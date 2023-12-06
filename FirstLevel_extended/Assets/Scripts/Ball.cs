@@ -36,7 +36,7 @@ public class Ball : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Border"))
         {
-            audioSource.clip = clips[2];
+            audioSource.clip = clips[0];
             audioSource.Play();
         }
     }

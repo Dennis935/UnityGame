@@ -22,18 +22,18 @@ public class GameController : MonoBehaviour
     private AudioSource audiosource;
     [SerializeField]
     private QuizManager quizManager;
-    [SerializeField]
-    private TMP_Text levelCompleteText;
+    /*[SerializeField]
+    private TMP_Text levelCompleteText;*/
 
 
     private void Start()
     {
         SetMathBricks();
         SpawnNewBall(); // Spawn a new Ball when new Game or Ball is dropped 
-        InvokeRepeating("CheckForEndOfGame", 20, 3); // Check in intervals if all Bricks have been destroyed and then restart game
+        InvokeRepeating("CheckForEndGame", 20, 3); // Check in intervals if all Bricks have been destroyed and then restart game
         gameOverScreen.GetComponent<Canvas>().enabled = false;
         quizManager.SetQuizVisibility(false);
-        levelCompleteText.enabled = false;
+        //levelCompleteText.enabled = false;
     }
 
     private void Update()
@@ -57,7 +57,7 @@ public class GameController : MonoBehaviour
         Brick[] bricks = FindObjectsOfType<Brick>();
         foreach (Brick brick in bricks)
         {
-            brick.SetIsMathBrick(UnityEngine.Random.Range(0, 10) == 0); // Zufällige Zuweisung
+            brick.SetIsMathBrick(UnityEngine.Random.Range(0, 5) == 0); // Zufällige Zuweisung
         }
     }
 
@@ -104,20 +104,22 @@ public class GameController : MonoBehaviour
 
         foreach (Transform row in container.transform)
         {
-            // Iterate over the child objects of the row directly
             foreach (Transform brick in row)
             {
-                // Assuming each brick has a specific tag to identify it
                 if (brick.CompareTag("Brick"))
                 {
                     count++;
                 }
             }
         }
+
+        Debug.Log("COUNT"+count);
+
         return count;
     }
 
-        public void SpawnNewBall()
+
+    public void SpawnNewBall()
     {
         Instantiate(ballPrefab, ballStartPosition, Quaternion.identity);
         paddle.SetNewBallsRigidBody();

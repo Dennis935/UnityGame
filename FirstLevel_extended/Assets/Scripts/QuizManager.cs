@@ -8,9 +8,10 @@ public class QuizManager : MonoBehaviour
     public Button antwort1Button;
     public Button antwort2Button;
     private GameController gameController;
-    private bool canSelectAnswer = true; // To prevent selecting answers while transitioning
-    private Color normalColor; // Die normale Farbe der Antwortbuttons
-    private int correctAnswer; // Variable, um die richtige Antwort zu speichern
+    private bool canSelectAnswer = true;
+    private Color normalColor;
+    private int correctAnswer;
+    private int falscheAntwort;
 
     public void Start()
     {
@@ -19,9 +20,7 @@ public class QuizManager : MonoBehaviour
         antwort2Button.onClick.AddListener(OnAntwort2Click);
         normalColor = antwort1Button.GetComponent<Image>().color;
 
-        // Setze die UI-Elemente auf unsichtbar
         SetQuizVisibility(false);
-
     }
 
     public void SetQuizVisibility(bool visible)
@@ -33,23 +32,21 @@ public class QuizManager : MonoBehaviour
 
     public void StartQuiz()
     {
-        // Generieren Sie zufällige Zahlen für die Additionsaufgabe
-        int zahl1 = Random.Range(1, 51);  // Zufallszahl zwischen 1 und 100
+        int zahl1 = Random.Range(1, 51);
         int zahl2 = Random.Range(1, 51);
 
-        // Berechnen Sie die richtige Antwort
         int richtigeAntwort = zahl1 + zahl2;
 
-        // Generieren Sie eine falsche Antwort (zufällige Zahl zwischen 1 und 200, um sicherzustellen, dass sie falsch ist)
-        int falscheAntwort = Random.Range(1, 101);
+        falscheAntwort = richtigeAntwort + Random.Range(-5, 6);
 
-        // Zufällig entscheiden, welche der beiden Antworten die richtige ist
-        bool istAntwort1Richtig = Random.Range(0, 2) == 0;
+        while (richtigeAntwort == falscheAntwort)
+        {
+            falscheAntwort = richtigeAntwort + Random.Range(-5, 6);
+        }
 
-        // Setzen Sie den Text und die Antworten in der UI
         frageText.text = $"Was ist {zahl1} + {zahl2}?";
 
-        if (istAntwort1Richtig)
+        if (Random.Range(0, 2) == 0)
         {
             antwort1Button.GetComponentInChildren<TMP_Text>().text = richtigeAntwort.ToString();
             antwort2Button.GetComponentInChildren<TMP_Text>().text = falscheAntwort.ToString();
@@ -62,13 +59,10 @@ public class QuizManager : MonoBehaviour
             correctAnswer = richtigeAntwort;
         }
 
-        // Zeigen Sie die UI-Elemente an
         SetQuizVisibility(true);
 
-        // Pausieren Sie das Spiel während des Quiz
         Time.timeScale = 0;
-        canSelectAnswer = true; // Enable answer selection
-
+        canSelectAnswer = true;
     }
 
     private void EndQuiz()
@@ -81,22 +75,19 @@ public class QuizManager : MonoBehaviour
     {
         if (canSelectAnswer)
         {
-            // Überprüfe, ob die Antwort korrekt ist
             if (antwort1Button.GetComponentInChildren<TMP_Text>().text == correctAnswer.ToString())
             {
                 EndQuiz();
                 ScoreManager scoreManager = FindObjectOfType<ScoreManager>();
                 if (scoreManager != null)
                 {
-                    scoreManager.AddPoints(1); // Beispiel: 1 Punkt für jede richtige Antwort
+                    scoreManager.AddPoints(1);
                 }
             }
             else
             {
-                // Hier verlierst du ein Leben, wenn die Antwort falsch ist
                 gameController.LooseALife();
                 EndQuiz();
-
             }
         }
     }
@@ -105,19 +96,19 @@ public class QuizManager : MonoBehaviour
     {
         if (canSelectAnswer)
         {
-            // Überprüfe, ob die Antwort korrekt ist
             if (antwort2Button.GetComponentInChildren<TMP_Text>().text == correctAnswer.ToString())
             {
                 EndQuiz();
                 ScoreManager scoreManager = FindObjectOfType<ScoreManager>();
                 if (scoreManager != null)
                 {
-                    scoreManager.AddPoints(1); // Beispiel: 1 Punkt für jede richtige Antwort
+                    scoreManager.AddPoints(1);
                 }
             }
             else
             {
                 gameController.LooseALife();
+                Debug.Log("Leben abgezogen");
                 EndQuiz();
             }
         }
@@ -127,26 +118,27 @@ public class QuizManager : MonoBehaviour
     {
         if (canSelectAnswer)
         {
-            // Navigate through answers using W and S keys
             if (Input.GetKeyDown(KeyCode.W))
             {
                 antwort1Button.Select();
-                antwort1Button.GetComponent<Image>().color = Color.yellow; // Setze die Farbe der ausgewählten Antwort
-                antwort2Button.GetComponent<Image>().color = normalColor; // Setze die Farbe der anderen Antwort auf die normale Farbe
+                antwort1Button.GetComponent<Image>().color = Color.yellow;
+                antwort2Button.GetComponent<Image>().color = normalColor;
             }
             else if (Input.GetKeyDown(KeyCode.S))
             {
                 antwort2Button.Select();
-                antwort2Button.GetComponent<Image>().color = Color.yellow; // Setze die Farbe der ausgewählten Antwort
-                antwort1Button.GetComponent<Image>().color = normalColor; // Setze die Farbe der anderen Antwort auf die normale Farbe
+                antwort2Button.GetComponent<Image>().color = Color.yellow;
+                antwort1Button.GetComponent<Image>().color = normalColor;
             }
 
             if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.Space))
             {
-                UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.GetComponent<Button>().onClick.Invoke();
+                if (UnityEngine.EventSystems.EventSystem.current != null &&
+                    UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject != null)
+                {
+                    UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.GetComponent<Button>().onClick.Invoke();
+                }
             }
-
         }
     }
 }
-
