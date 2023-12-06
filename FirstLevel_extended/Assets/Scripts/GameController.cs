@@ -57,7 +57,7 @@ public class GameController : MonoBehaviour
         Brick[] bricks = FindObjectsOfType<Brick>();
         foreach (Brick brick in bricks)
         {
-            brick.SetIsMathBrick(UnityEngine.Random.Range(0, 2) == 0); // Zufällige Zuweisung
+            brick.SetIsMathBrick(UnityEngine.Random.Range(0, 10) == 0); // Zufällige Zuweisung
         }
     }
 
@@ -89,12 +89,35 @@ public class GameController : MonoBehaviour
 
     public void CheckForEndGame()
     {
-        if (GameObject.Find("BrickLineC").transform.childCount == 0)
-            levelCompleteText.enabled = true;
-            Time.timeScale = 0;
+        GameObject brickContainer = GameObject.Find("Brick"); // Assuming Brick is the parent object
+        int totalBricks = CountBricks(brickContainer);
+
+        if (totalBricks == 0)
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 
-    public void SpawnNewBall()
+    private int CountBricks(GameObject container)
+    {
+        int count = 0;
+
+        foreach (Transform row in container.transform)
+        {
+            // Iterate over the child objects of the row directly
+            foreach (Transform brick in row)
+            {
+                // Assuming each brick has a specific tag to identify it
+                if (brick.CompareTag("Brick"))
+                {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
+        public void SpawnNewBall()
     {
         Instantiate(ballPrefab, ballStartPosition, Quaternion.identity);
         paddle.SetNewBallsRigidBody();

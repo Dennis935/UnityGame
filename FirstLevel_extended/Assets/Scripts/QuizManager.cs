@@ -34,14 +34,14 @@ public class QuizManager : MonoBehaviour
     public void StartQuiz()
     {
         // Generieren Sie zufällige Zahlen für die Additionsaufgabe
-        int zahl1 = Random.Range(1, 101);  // Zufallszahl zwischen 1 und 100
-        int zahl2 = Random.Range(1, 101);
+        int zahl1 = Random.Range(1, 51);  // Zufallszahl zwischen 1 und 100
+        int zahl2 = Random.Range(1, 51);
 
         // Berechnen Sie die richtige Antwort
         int richtigeAntwort = zahl1 + zahl2;
 
         // Generieren Sie eine falsche Antwort (zufällige Zahl zwischen 1 und 200, um sicherzustellen, dass sie falsch ist)
-        int falscheAntwort = Random.Range(1, 201);
+        int falscheAntwort = Random.Range(1, 101);
 
         // Zufällig entscheiden, welche der beiden Antworten die richtige ist
         bool istAntwort1Richtig = Random.Range(0, 2) == 0;

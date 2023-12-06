@@ -25,7 +25,7 @@ public class Brick : MonoBehaviour
 
     // Private fileds
     private int currentHitPoints; // the current hit points the brick has left
-    private AudioSource audioSource; // the reference to the bricks AudioSource Component for easy access in this script
+    //private AudioSource audioSource; // the reference to the bricks AudioSource Component for easy access in this script
 
     // Start is called before the first frame update
     void Start()
@@ -33,8 +33,8 @@ public class Brick : MonoBehaviour
         // Initialize the hitpoints a brick has, get its AudioSource Component and assign the destroy sound clip to the source
         // (you can switch the clips to have a different sound per brick)
         currentHitPoints = hitPoints;
-        audioSource = GetComponent<AudioSource>();
-        audioSource.clip = destroySound;
+        //audioSource = GetComponent<AudioSource>();
+        //audioSource.clip = destroySound;
     }
 
     public void SetIsMathBrick(bool isMath)
@@ -74,13 +74,11 @@ public class Brick : MonoBehaviour
 
         if (destructionEffect) destructionEffect.Play(); // play the destruction particle effect
 
-        if (destroySound && audioSource) audioSource.PlayOneShot(destroySound); // play the destruction sound clip when it has an audiosource
+        //if (destroySound && audioSource) audioSource.PlayOneShot(destroySound); // play the destruction sound clip when it has an audiosource
 
         if (director) director.Play();  // play the alembic animation (the PlayableDirector component on the TimeLine)
 
         Destroy(gameObject, 1f); // eventually destroy the brick GameObject but wait 4 seconds for the animation/effects/sound to finish
-
-        FindObjectOfType<GameController>().CheckForEndGame();
 
         ScoreManager scoreManager = FindObjectOfType<ScoreManager>();
         if (scoreManager != null)
