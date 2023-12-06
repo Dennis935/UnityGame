@@ -75,11 +75,37 @@ public class GameController : MonoBehaviour
         paddle.SetNewBallsRigidBody();
     }
 
-    public void CheckForEndGame()
+    public void CheckForEndOfGame()
     {
-        if (GameObject.Find("BrickLineC").transform.childCount == 0)
+        GameObject brickContainer = GameObject.Find("Brick"); // Assuming Brick is the parent object
+        int totalBricks = CountBricks(brickContainer);
+
+        if (totalBricks == 0)
+        {
             SceneManager.LoadScene(0);
+        }
     }
+
+    private int CountBricks(GameObject container)
+    {
+        int count = 0;
+
+        foreach (Transform row in container.transform)
+        {
+            // Iterate over the child objects of the row directly
+            foreach (Transform brick in row)
+            {
+                // Assuming each brick has a specific tag to identify it
+                if (brick.CompareTag("Brick"))
+                {
+                    count++;
+                }
+            }
+        }
+
+        return count;
+    }
+
 
     public void SpawnNewBall()
     {

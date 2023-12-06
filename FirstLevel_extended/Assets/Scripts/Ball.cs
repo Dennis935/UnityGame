@@ -23,17 +23,17 @@ public class Ball : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Paddle"))
         {
-            audioSource.clip = clips[0];
+            audioSource.clip = clips.Count > 0 ? clips[0] : null;
             audioSource.Play();
         }
         if (collision.gameObject.CompareTag("Brick"))
         {
-            audioSource.clip = clips[1];
+            audioSource.clip = clips.Count > 1 ? clips[1] : null;
             audioSource.Play();
         }
         if (collision.gameObject.CompareTag("Border"))
         {
-            audioSource.clip = clips[2];
+            audioSource.clip = clips.Count > 2 ? clips[2] : null;
             audioSource.Play();
         }
     }

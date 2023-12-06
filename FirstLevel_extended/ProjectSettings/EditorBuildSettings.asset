@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Breakout.unity
+    guid: 0c1b2bcc8a561754587bf75071a14ccb
   m_configObjects: {}

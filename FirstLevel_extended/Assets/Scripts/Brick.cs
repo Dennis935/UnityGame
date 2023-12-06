@@ -25,7 +25,7 @@ public class Brick : MonoBehaviour
 
     // Private fileds
     private int currentHitPoints; // the current hit points the brick has left
-    private AudioSource audioSource; // the reference to the bricks AudioSource Component for easy access in this script
+    //private AudioSource audioSource; // the reference to the bricks AudioSource Component for easy access in this script
 
     // Start is called before the first frame update
     void Start()
@@ -33,8 +33,8 @@ public class Brick : MonoBehaviour
         // Initialize the hitpoints a brick has, get its AudioSource Component and assign the destroy sound clip to the source
         // (you can switch the clips to have a different sound per brick)
         currentHitPoints = hitPoints;
-        audioSource = GetComponent<AudioSource>();
-        audioSource.clip = destroySound;
+        //audioSource = GetComponent<AudioSource>();
+        //audioSource.clip = destroySound;
     }
 
     // A method that handles the reflection of the ball from a brick when collision is detected
@@ -69,7 +69,7 @@ public class Brick : MonoBehaviour
 
         if (destructionEffect) destructionEffect.Play(); // play the destruction particle effect
 
-        if (destroySound && audioSource) audioSource.PlayOneShot(destroySound); // play the destruction sound clip when it has an audiosource
+        //if (destroySound && audioSource) audioSource.PlayOneShot(destroySound); // play the destruction sound clip when it has an audiosource
 
         if (director) director.Play();  // play the alembic animation (the PlayableDirector component on the TimeLine)
 
@@ -114,11 +114,21 @@ public class Brick : MonoBehaviour
     // MathBrick subclass
     public class MathBrick : Brick
     {
-        // Extend behaviours for MathBrick 
-    }
-    // Update is called once per frame
-    void Update()
-    {
+        // Reference to the material for math bricks
+        public Material mathBrickMaterial;
 
+        // StartMathBrick is called before the first frame update
+        void StartMathBrick()
+        {
+            // Check if the material is assigned
+            if (mathBrickMaterial != null)
+            {
+                Renderer renderer = GetComponent<Renderer>();
+                if (renderer != null)
+                {
+                    renderer.material = mathBrickMaterial;
+                }
+            }
+        }
     }
 }
