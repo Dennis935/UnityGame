@@ -22,15 +22,18 @@ public class GameController : MonoBehaviour
     private AudioSource audiosource;
     [SerializeField]
     private QuizManager quizManager;
-
+    [SerializeField]
+    private TMP_Text levelCompleteText;
 
 
     private void Start()
     {
+        SetMathBricks();
         SpawnNewBall(); // Spawn a new Ball when new Game or Ball is dropped 
         InvokeRepeating("CheckForEndOfGame", 20, 3); // Check in intervals if all Bricks have been destroyed and then restart game
         gameOverScreen.GetComponent<Canvas>().enabled = false;
         quizManager.SetQuizVisibility(false);
+        levelCompleteText.enabled = false;
     }
 
     private void Update()
@@ -45,9 +48,18 @@ public class GameController : MonoBehaviour
             gameOverScreen.GetComponent<Canvas>().enabled = true;
             Time.timeScale = 0;
             audiosource.Stop();
+            SceneManager.LoadScene("HighscoreScene");
         }
     }
 
+    private void SetMathBricks()
+    {
+        Brick[] bricks = FindObjectsOfType<Brick>();
+        foreach (Brick brick in bricks)
+        {
+            brick.SetIsMathBrick(UnityEngine.Random.Range(0, 2) == 0); // Zufällige Zuweisung
+        }
+    }
 
     public void LooseALife()
     {
@@ -78,7 +90,8 @@ public class GameController : MonoBehaviour
     public void CheckForEndGame()
     {
         if (GameObject.Find("BrickLineC").transform.childCount == 0)
-            SceneManager.LoadScene(0);
+            levelCompleteText.enabled = true;
+            Time.timeScale = 0;
     }
 
     public void SpawnNewBall()

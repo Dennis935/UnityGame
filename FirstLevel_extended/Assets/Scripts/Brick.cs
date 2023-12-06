@@ -37,6 +37,11 @@ public class Brick : MonoBehaviour
         audioSource.clip = destroySound;
     }
 
+    public void SetIsMathBrick(bool isMath)
+    {
+        isMathBrick = isMath;
+    }
+
     // A method that handles the reflection of the ball from a brick when collision is detected
     private void ReflectBall(Collision collision, Action<int> callback)
     {
@@ -74,6 +79,14 @@ public class Brick : MonoBehaviour
         if (director) director.Play();  // play the alembic animation (the PlayableDirector component on the TimeLine)
 
         Destroy(gameObject, 1f); // eventually destroy the brick GameObject but wait 4 seconds for the animation/effects/sound to finish
+
+        FindObjectOfType<GameController>().CheckForEndGame();
+
+        ScoreManager scoreManager = FindObjectOfType<ScoreManager>();
+        if (scoreManager != null)
+        {
+            scoreManager.AddPoints(1); // Beispiel: 1 Punkt für das Zerstören eines Bricks
+        }
     }
 
     // Implement what happens when it is a math brick that is destroyed
@@ -83,6 +96,7 @@ public class Brick : MonoBehaviour
 
         // Hier den Aufruf für das Quiz hinzufügen
         QuizManager quizManager = FindObjectOfType<QuizManager>();
+        quizManager.SetQuizVisibility(true);
         if (quizManager != null)
         {
             quizManager.StartQuiz();

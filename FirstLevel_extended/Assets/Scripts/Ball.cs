@@ -12,11 +12,13 @@ public class Ball : MonoBehaviour
 
     [SerializeField]
     private List<AudioClip> clips; // List of different soundeffects that are played when the ball hits objects 
+    private CameraShake cameraShake;
 
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
+        cameraShake = Camera.main.GetComponent<CameraShake>();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -28,8 +30,9 @@ public class Ball : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Brick"))
         {
-            audioSource.clip = clips[1];
-            audioSource.Play();
+            //audioSource.clip = clips[1];
+            //audioSource.Play();
+            StartCoroutine(cameraShake.Shake(0.1f, 0.1f)); // Kamera schütteln
         }
         if (collision.gameObject.CompareTag("Border"))
         {

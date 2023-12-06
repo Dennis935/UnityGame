@@ -10,7 +10,7 @@ public class QuizManager : MonoBehaviour
     private GameController gameController;
     private bool canSelectAnswer = true; // To prevent selecting answers while transitioning
     private Color normalColor; // Die normale Farbe der Antwortbuttons
-
+    private int correctAnswer; // Variable, um die richtige Antwort zu speichern
 
     public void Start()
     {
@@ -19,7 +19,9 @@ public class QuizManager : MonoBehaviour
         antwort2Button.onClick.AddListener(OnAntwort2Click);
         normalColor = antwort1Button.GetComponent<Image>().color;
 
-        StartQuiz();
+        // Setze die UI-Elemente auf unsichtbar
+        SetQuizVisibility(false);
+
     }
 
     public void SetQuizVisibility(bool visible)
@@ -51,11 +53,13 @@ public class QuizManager : MonoBehaviour
         {
             antwort1Button.GetComponentInChildren<TMP_Text>().text = richtigeAntwort.ToString();
             antwort2Button.GetComponentInChildren<TMP_Text>().text = falscheAntwort.ToString();
+            correctAnswer = richtigeAntwort;
         }
         else
         {
             antwort1Button.GetComponentInChildren<TMP_Text>().text = falscheAntwort.ToString();
             antwort2Button.GetComponentInChildren<TMP_Text>().text = richtigeAntwort.ToString();
+            correctAnswer = richtigeAntwort;
         }
 
         // Zeigen Sie die UI-Elemente an
@@ -77,9 +81,23 @@ public class QuizManager : MonoBehaviour
     {
         if (canSelectAnswer)
         {
-            EndQuiz();
-            // Hier können Sie überprüfen, ob die Antwort korrekt ist
-            // Zum Beispiel: if (antwort1Button.GetComponentInChildren<TMP_Text>().text == "Die richtige Antwort")
+            // Überprüfe, ob die Antwort korrekt ist
+            if (antwort1Button.GetComponentInChildren<TMP_Text>().text == correctAnswer.ToString())
+            {
+                EndQuiz();
+                ScoreManager scoreManager = FindObjectOfType<ScoreManager>();
+                if (scoreManager != null)
+                {
+                    scoreManager.AddPoints(1); // Beispiel: 1 Punkt für jede richtige Antwort
+                }
+            }
+            else
+            {
+                // Hier verlierst du ein Leben, wenn die Antwort falsch ist
+                gameController.LooseALife();
+                EndQuiz();
+
+            }
         }
     }
 
@@ -87,9 +105,21 @@ public class QuizManager : MonoBehaviour
     {
         if (canSelectAnswer)
         {
-            EndQuiz();
-            // Hier können Sie überprüfen, ob die Antwort korrekt ist
-            // Zum Beispiel: if (antwort2Button.GetComponentInChildren<TMP_Text>().text == "Die richtige Antwort")
+            // Überprüfe, ob die Antwort korrekt ist
+            if (antwort2Button.GetComponentInChildren<TMP_Text>().text == correctAnswer.ToString())
+            {
+                EndQuiz();
+                ScoreManager scoreManager = FindObjectOfType<ScoreManager>();
+                if (scoreManager != null)
+                {
+                    scoreManager.AddPoints(1); // Beispiel: 1 Punkt für jede richtige Antwort
+                }
+            }
+            else
+            {
+                gameController.LooseALife();
+                EndQuiz();
+            }
         }
     }
 
