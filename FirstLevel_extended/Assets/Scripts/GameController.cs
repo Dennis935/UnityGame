@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 
@@ -28,7 +28,7 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
-        SetMathBricks();
+        SetIsMathBrick();
         SpawnNewBall(); // Spawn a new Ball when new Game or Ball is dropped 
         InvokeRepeating("CheckForEndGame", 20, 3); // Check every second if all Bricks have been destroyed and then restart game
         gameOverScreen.GetComponent<Canvas>().enabled = false;
@@ -69,18 +69,27 @@ public class GameController : MonoBehaviour
             PlayerPrefs.SetInt("Score", scoreManager.GetScore());
         }
 
-        // Speichere die Änderungen in PlayerPrefs
+        // Speichere die ï¿½nderungen in PlayerPrefs
         PlayerPrefs.Save();
     }
 
 
 
-    private void SetMathBricks()
+    public void SetIsMathBrick()
     {
         Brick[] bricks = FindObjectsOfType<Brick>();
         foreach (Brick brick in bricks)
         {
             brick.SetIsMathBrick(UnityEngine.Random.Range(0, 5) == 0);
+            if (brick.IsMathBrick)
+            {
+                // Assuming the Renderer is on the BrickShape GameObject
+                Renderer renderer = brick.GetComponentInChildren<Renderer>();
+                if (renderer != null && brick.MathBrickMaterial != null)
+                {
+                    renderer.material = brick.MathBrickMaterial;
+                }
+            }
         }
     }
 
@@ -161,8 +170,8 @@ public class GameController : MonoBehaviour
     {
         int activeScene = SceneManager.GetActiveScene().buildIndex;
 
-       
-        if (activeScene < 5)  
+
+        if (activeScene < 5)
         {
             SceneManager.LoadScene(activeScene + 1);
         }

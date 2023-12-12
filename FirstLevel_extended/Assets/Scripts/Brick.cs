@@ -19,7 +19,8 @@ public class Brick : MonoBehaviour
     private PlayableDirector director; // the reference to the "Timeline" that has the PlayableDirector component to play at destruction
     [SerializeField]
     private bool isMathBrick = false; // make the distinction if this is a math brick to implement the math learning goal.. 
-
+    [SerializeField] 
+    private Material mathBrickMaterial;
 
     // Private fileds
     private int currentHitPoints; // the current hit points the brick has left
@@ -35,10 +36,24 @@ public class Brick : MonoBehaviour
         //audioSource.clip = destroySound;
     }
 
-    public void SetIsMathBrick(bool isMath)
+    private void SetIsMathBrick()
     {
-        isMathBrick = isMath;
+        Brick[] bricks = FindObjectsOfType<Brick>();
+        foreach (Brick brick in bricks)
+        {
+            brick.SetIsMathBrick(UnityEngine.Random.Range(0, 5) == 0);
+            if (brick.isMathBrick)
+            {
+                // Assuming the Renderer is on the BrickShape GameObject
+                Renderer renderer = brick.GetComponentInChildren<Renderer>();
+                if (renderer != null && brick.mathBrickMaterial != null)
+                {
+                    renderer.material = brick.mathBrickMaterial;
+                }
+            }
+        }
     }
+
 
     // A method that handles the reflection of the ball from a brick when collision is detected
     private void ReflectBall(Collision collision, Action<int> callback)
