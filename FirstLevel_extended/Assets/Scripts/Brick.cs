@@ -61,9 +61,35 @@ public class Brick : MonoBehaviour
 
     private void MathEvent()
     {
+        // Annahme: Diese Methode wird aufgerufen, wenn ein Math-Brick zerstört wird
+
         QuizManager quizManager = FindObjectOfType<QuizManager>();
-        quizManager?.SetQuizVisibility(true);
-        quizManager?.StartQuiz();
+
+        if (quizManager != null)
+        {
+            string currentScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+
+            if (currentScene == "Level1")
+            {
+                quizManager.SetQuizVisibility(true);
+                quizManager.StartQuiz(QuizManager.MathOperation.Addition);
+            }
+            else if (currentScene == "Level2")
+            {
+                quizManager.SetQuizVisibility(true);
+                quizManager.StartQuiz(QuizManager.MathOperation.Subtraction);
+            }
+            else if (currentScene == "Level3")
+            {
+                quizManager.SetQuizVisibility(true);
+                quizManager.StartQuiz(QuizManager.MathOperation.Multiplication);
+            }
+            else if (currentScene == "Level4")
+            {
+                quizManager.SetQuizVisibility(true);
+                quizManager.StartQuiz(QuizManager.MathOperation.Division);
+            }
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
