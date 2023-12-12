@@ -44,7 +44,7 @@ public class QuizManager : MonoBehaviour
             falscheAntwort = richtigeAntwort + Random.Range(-5, 6);
         }
 
-        frageText.text = $"Was ist {zahl1} + {zahl2}?";
+        frageText.text = $"{zahl1} + {zahl2}?";
 
         if (Random.Range(0, 2) == 0)
         {

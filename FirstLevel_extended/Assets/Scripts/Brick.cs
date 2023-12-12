@@ -68,31 +68,29 @@ public class Brick : MonoBehaviour
     // A method to handle the destruction when healthpoints are used up
     public void HandleDestruction()
     {
-        if (isMathBrick) MathEvent(); // react on a special math brick's destruction
+        if (isMathBrick) MathEvent(); 
 
-        if (boxCollider) boxCollider.enabled = false; // deactivate the collider so the ball does not hit a currently destructing brick twice or more 
+        if (boxCollider) boxCollider.enabled = false; 
 
-        if (destructionEffect) destructionEffect.Play(); // play the destruction particle effect
+        if (destructionEffect) destructionEffect.Play(); 
 
         //if (destroySound && audioSource) audioSource.PlayOneShot(destroySound); // play the destruction sound clip when it has an audiosource
 
-        if (director) director.Play();  // play the alembic animation (the PlayableDirector component on the TimeLine)
+        if (director) director.Play();
 
-        Destroy(gameObject, 1f); // eventually destroy the brick GameObject but wait 4 seconds for the animation/effects/sound to finish
+        Destroy(gameObject, 1f);
 
         ScoreManager scoreManager = FindObjectOfType<ScoreManager>();
         if (scoreManager != null)
         {
-            scoreManager.AddPoints(1); // Beispiel: 1 Punkt für das Zerstören eines Bricks
+            scoreManager.AddPoints(1); 
         }
     }
 
-    // Implement what happens when it is a math brick that is destroyed
     private void MathEvent()
     {
         // Annahme: Diese Methode wird aufgerufen, wenn ein Math-Brick zerstört wird
 
-        // Hier den Aufruf für das Quiz hinzufügen
         QuizManager quizManager = FindObjectOfType<QuizManager>();
         quizManager.SetQuizVisibility(true);
         if (quizManager != null)

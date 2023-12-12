@@ -22,8 +22,6 @@ public class GameController : MonoBehaviour
     private AudioSource audiosource;
     [SerializeField]
     private QuizManager quizManager;
-    /*[SerializeField]
-    private TMP_Text levelCompleteText;*/
 
 
     private void Start()
@@ -33,7 +31,6 @@ public class GameController : MonoBehaviour
         InvokeRepeating("CheckForEndGame", 20, 3); // Check in intervals if all Bricks have been destroyed and then restart game
         gameOverScreen.GetComponent<Canvas>().enabled = false;
         quizManager.SetQuizVisibility(false);
-        //levelCompleteText.enabled = false;
     }
 
     private void Update()
@@ -45,6 +42,7 @@ public class GameController : MonoBehaviour
 
         if (lives <= 0)
         {
+            SavePlayerScore();
             gameOverScreen.GetComponent<Canvas>().enabled = true;
             Time.timeScale = 0;
             audiosource.Stop();
@@ -52,12 +50,33 @@ public class GameController : MonoBehaviour
         }
     }
 
+    private void SavePlayerScore()
+    {
+        // Lade den vorhandenen Spielername
+        string playerName = PlayerPrefs.GetString("PlayerName", "");
+
+        // Speichere den Spielername
+        PlayerPrefs.SetString("PlayerName", playerName);
+
+        // Speichere den Score
+        ScoreManager scoreManager = FindObjectOfType<ScoreManager>();
+        if (scoreManager != null)
+        {
+            PlayerPrefs.SetInt("Score", scoreManager.GetScore());
+        }
+
+        // Speichere die Änderungen in PlayerPrefs
+        PlayerPrefs.Save();
+    }
+
+
+
     private void SetMathBricks()
     {
         Brick[] bricks = FindObjectsOfType<Brick>();
         foreach (Brick brick in bricks)
         {
-            brick.SetIsMathBrick(UnityEngine.Random.Range(0, 5) == 0); // Zufällige Zuweisung
+            brick.SetIsMathBrick(UnityEngine.Random.Range(0, 5) == 0);
         }
     }
 
@@ -89,7 +108,7 @@ public class GameController : MonoBehaviour
 
     public void CheckForEndGame()
     {
-        GameObject brickContainer = GameObject.Find("Brick"); // Assuming Brick is the parent object
+        GameObject brickContainer = GameObject.Find("Brick");
         int totalBricks = CountBricks(brickContainer);
 
         if (totalBricks == 0)

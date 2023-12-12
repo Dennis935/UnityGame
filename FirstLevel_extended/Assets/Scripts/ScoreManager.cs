@@ -19,7 +19,6 @@ public class ScoreManager : MonoBehaviour
 
     private void UpdateScoreUI()
     {
-        // Finde das Textobjekt mit dem Namen "ScoreText" im Canvas
         if (scoreText == null)
         {
             scoreText = GameObject.Find("ScoreText").GetComponent<TMP_Text>();
@@ -30,5 +29,13 @@ public class ScoreManager : MonoBehaviour
             scoreText.text = "Score: " + score;
         }
 
+        // Save the score to PlayerPrefs
+        PlayerPrefs.SetInt("Score", score);
+        PlayerPrefs.Save();
+    }
+
+    public int GetScore()
+    {
+        return score;
     }
 }

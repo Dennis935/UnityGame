@@ -3,9 +3,18 @@ using UnityEngine.SceneManagement;
 
 public class StartMenuController : MonoBehaviour
 {
+    public PlayerNameInput playerNameInput;
+
     public void StartGame()
     {
-        // Lade die Level-1-Szene (ersetze "Level1" durch den Namen deiner Level-1-Szene)
-        SceneManager.LoadScene("Level1");
+        if (playerNameInput.IsPlayerNameEntered())
+        {
+            playerNameInput.SavePlayerName();  // Hier wird die SavePlayerName-Methode aufgerufen
+            SceneManager.LoadScene("Level1");
+        }
+        else
+        {
+            Debug.Log("Bitte gib einen Spielername ein, bevor du das Spiel startest.");
+        }
     }
 }
