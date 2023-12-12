@@ -24,7 +24,7 @@ public class GameController : MonoBehaviour
     private QuizManager quizManager;
     [SerializeField]
     private TMP_Text LevelCompleteText;
-    
+
 
     private void Start()
     {
@@ -81,21 +81,8 @@ public class GameController : MonoBehaviour
         foreach (Brick brick in bricks)
         {
             brick.SetIsMathBrick(UnityEngine.Random.Range(0, 5) == 0);
-            if (brick.IsMathBrick)
-            {
-                // Assuming the Renderer is on the BrickShape GameObject
-                Renderer renderer = brick.GetComponentInChildren<Renderer>();
-                if (renderer != null && brick.MathBrickMaterial != null)
-                {
-                    renderer.material = brick.MathBrickMaterial;
-                }
-            }
         }
     }
-
-
-
-
 
     public void LooseALife()
     {
@@ -174,8 +161,8 @@ public class GameController : MonoBehaviour
     {
         int activeScene = SceneManager.GetActiveScene().buildIndex;
 
-        // Check if the current scene is not the last scene
-        if (activeScene < 5)
+       
+        if (activeScene < 5)  
         {
             SceneManager.LoadScene(activeScene + 1);
         }
@@ -185,19 +172,11 @@ public class GameController : MonoBehaviour
         }
     }
 
+
     public void SpawnNewBall()
     {
         Instantiate(ballPrefab, ballStartPosition, Quaternion.identity);
         paddle.SetNewBallsRigidBody();
     }
 
-    public void LoadNextLevel()
-    {      
-      SceneManager.LoadScene("Level2");    
-    }
-
-    public void LoadMenu()
-    {
-        SceneManager.LoadScene("GameStart");
-    }
 }

@@ -115,7 +115,7 @@ public class QuizManager : MonoBehaviour
             $"{zahl1} - {zahl2}?" :
             (mathOperation == MathOperation.Multiplication) ?
             $"{zahl1} * {zahl2}?" :
-            $"{zahl1} : {zahl2}?"; 
+            $"{zahl1} : {zahl2}?";
 
         int randomOption = Random.Range(0, 3);
 
@@ -146,9 +146,6 @@ public class QuizManager : MonoBehaviour
         Time.timeScale = 0;
         canSelectAnswer = true;
     }
-
-
-
 
     private void EndQuiz()
     {
