@@ -7,7 +7,7 @@ public class PlayerNameInput : MonoBehaviour
 
     private void Start()
     {
-        LoadPlayerName();
+        //LoadPlayerName();
     }
 
     public void SavePlayerName()

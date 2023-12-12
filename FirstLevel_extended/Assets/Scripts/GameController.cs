@@ -113,7 +113,8 @@ public class GameController : MonoBehaviour
 
         if (totalBricks == 0)
         {
-            SceneManager.LoadScene(0);
+            //SavePlayerScore();
+            SceneManager.LoadScene("HighscoreScene");
         }
     }
 
