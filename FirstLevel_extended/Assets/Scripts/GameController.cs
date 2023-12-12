@@ -50,8 +50,13 @@ public class GameController : MonoBehaviour
             gameOverScreen.GetComponent<Canvas>().enabled = true;
             Time.timeScale = 0;
             audiosource.Stop();
-            SceneManager.LoadScene("HighscoreScene");
+            Invoke("LoadHighscoreSceneWithDelay", 3f);
         }
+    }
+
+    private void LoadHighscoreSceneWithDelay()
+    {
+        SceneManager.LoadScene("HighscoreScene");
     }
 
     private void SavePlayerScore()
