@@ -77,8 +77,21 @@ public class GameController : MonoBehaviour
         foreach (Brick brick in bricks)
         {
             brick.SetIsMathBrick(UnityEngine.Random.Range(0, 5) == 0);
+            if (brick.IsMathBrick)
+            {
+                // Assuming the Renderer is on the BrickShape GameObject
+                Renderer renderer = brick.GetComponentInChildren<Renderer>();
+                if (renderer != null && brick.MathBrickMaterial != null)
+                {
+                    renderer.material = brick.MathBrickMaterial;
+                }
+            }
         }
     }
+
+
+
+
 
     public void LooseALife()
     {
