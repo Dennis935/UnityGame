@@ -22,14 +22,17 @@ public class GameController : MonoBehaviour
     private AudioSource audiosource;
     [SerializeField]
     private QuizManager quizManager;
-
+    [SerializeField]
+    private TMP_Text LevelCompleteText;
+    
 
     private void Start()
     {
         SetMathBricks();
         SpawnNewBall(); // Spawn a new Ball when new Game or Ball is dropped 
-        InvokeRepeating("CheckForEndGame", 20, 3); // Check in intervals if all Bricks have been destroyed and then restart game
+        InvokeRepeating("CheckForEndGame", 20, 3); // Check every second if all Bricks have been destroyed and then restart game
         gameOverScreen.GetComponent<Canvas>().enabled = false;
+        LevelCompleteText.enabled = false;
         quizManager.SetQuizVisibility(false);
     }
 
@@ -39,6 +42,7 @@ public class GameController : MonoBehaviour
         {
             livesTextInfo.text = "Lives: " + lives.ToString();
         }
+
 
         if (lives <= 0)
         {
@@ -119,18 +123,6 @@ public class GameController : MonoBehaviour
         paddle.SetNewBallsRigidBody();
     }
 
-    public void CheckForEndGame()
-    {
-        GameObject brickContainer = GameObject.Find("Brick");
-        int totalBricks = CountBricks(brickContainer);
-
-        if (totalBricks == 0)
-        {
-            //SavePlayerScore();
-            SceneManager.LoadScene("HighscoreScene");
-        }
-    }
-
     private int CountBricks(GameObject container)
     {
         int count = 0;
@@ -146,15 +138,66 @@ public class GameController : MonoBehaviour
             }
         }
 
-        Debug.Log("COUNT"+count);
+        Debug.Log("COUNT" + count);
 
         return count;
     }
 
+    public void CheckForEndGame()
+    {
+        GameObject[] brickRows = GameObject.FindGameObjectsWithTag("BrickRow");
+
+        bool allEmpty = true;
+
+        foreach (GameObject brickRow in brickRows)
+        {
+            if (brickRow.transform.childCount != 0)
+            {
+                Debug.Log("not empty");
+                allEmpty = false;
+                break;
+            }
+        }
+
+        if (allEmpty)
+        {
+            SavePlayerScore();
+            LevelCompleteText.enabled = true;
+
+            // Set a delay of 3 seconds before loading the next scene
+            Invoke("LoadNextSceneWithDelay", 3f);
+
+        }
+    }
+
+    private void LoadNextSceneWithDelay()
+    {
+        int activeScene = SceneManager.GetActiveScene().buildIndex;
+
+        // Check if the current scene is not the last scene
+        if (activeScene < 5)
+        {
+            SceneManager.LoadScene(activeScene + 1);
+        }
+        else
+        {
+            SceneManager.LoadScene("HighscoreScene");
+        }
+    }
 
     public void SpawnNewBall()
     {
         Instantiate(ballPrefab, ballStartPosition, Quaternion.identity);
         paddle.SetNewBallsRigidBody();
+    }
+
+    public void LoadNextLevel()
+    {      
+      SceneManager.LoadScene("Level2");    
+    }
+
+    public void LoadMenu()
+    {
+        SceneManager.LoadScene("GameStart");
     }
 }
