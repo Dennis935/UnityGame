@@ -26,6 +26,14 @@ public class QuizManager : MonoBehaviour
         SetQuizVisibility(false);
     }
 
+    public enum MathOperation
+    {
+        Addition,
+        Subtraction,
+        Multiplication,
+        Division,
+    }
+
     public void SetQuizVisibility(bool visible)
     {
         frageText.gameObject.SetActive(visible);
@@ -34,21 +42,80 @@ public class QuizManager : MonoBehaviour
         antwort3Button.gameObject.SetActive(visible);
     }
 
-    public void StartQuiz()
+    public void StartQuiz(MathOperation mathOperation)
     {
-        int zahl1 = Random.Range(1, 51);
-        int zahl2 = Random.Range(1, 51);
+        int zahl1, zahl2;
 
-        int richtigeAntwort = zahl1 + zahl2;
+        if (mathOperation == MathOperation.Multiplication)
+        {
+            zahl1 = Random.Range(1, 11);
+            zahl2 = Random.Range(1, 11);
+        }
+        else if (mathOperation == MathOperation.Division)
+        {
+            do
+            {
+                zahl2 = Random.Range(2, 1001);
+                int maxQuotient = 1000 / zahl2;
+                zahl1 = Random.Range(2, maxQuotient + 1) * zahl2; // Ensure zahl1 is not 1
+            } while (zahl1 == zahl2);  // Repeat until zahl1 is different from zahl2
+        }
+        else
+        {
+            zahl1 = Random.Range(1, 51);
+            zahl2 = Random.Range(1, 51);
+        }
 
-        falscheAntwort = richtigeAntwort + Random.Range(-7, 8);
+        int richtigeAntwort;
+
+        if (mathOperation == MathOperation.Addition)
+        {
+            richtigeAntwort = zahl1 + zahl2;
+        }
+        else if (mathOperation == MathOperation.Subtraction)
+        {
+            // Ensure that the result is positive for subtraction
+            if (zahl1 >= zahl2)
+            {
+                richtigeAntwort = zahl1 - zahl2;
+            }
+            else
+            {
+                richtigeAntwort = zahl2 - zahl1;
+                int temp = zahl1;
+                zahl1 = zahl2;
+                zahl2 = temp;
+            }
+        }
+        else if (mathOperation == MathOperation.Multiplication)
+        {
+            richtigeAntwort = zahl1 * zahl2;
+        }
+        else if (mathOperation == MathOperation.Division)
+        {
+            richtigeAntwort = zahl1 / zahl2;
+        }
+        else
+        {
+            // Handle other math operations if needed
+            richtigeAntwort = 0;
+        }
+
+        // Ensure that falscheAntwort is not negative
+        falscheAntwort = Mathf.Max(0, richtigeAntwort + Random.Range(-7, 8));
 
         while (richtigeAntwort == falscheAntwort)
         {
-            falscheAntwort = richtigeAntwort + Random.Range(-7, 8);
+            falscheAntwort = Mathf.Max(0, richtigeAntwort + Random.Range(-7, 8));
         }
 
-        frageText.text = $"{zahl1} + {zahl2}?";
+        frageText.text = (mathOperation == MathOperation.Addition) ?
+            $"{zahl1} + {zahl2}?" :
+            (mathOperation == MathOperation.Subtraction) ?
+            $"{zahl1} - {zahl2}?" :
+            (mathOperation == MathOperation.Multiplication) ?
+            $"{zahl1} * {zahl2}?" :
+            $"{zahl1} : {zahl2}?"; 
 
         int randomOption = Random.Range(0, 3);
 
@@ -56,19 +123,19 @@ public class QuizManager : MonoBehaviour
         {
             antwort1Button.GetComponentInChildren<TMP_Text>().text = richtigeAntwort.ToString();
             antwort2Button.GetComponentInChildren<TMP_Text>().text = falscheAntwort.ToString();
-            antwort3Button.GetComponentInChildren<TMP_Text>().text = (falscheAntwort + Random.Range(-5, 6)).ToString();
+            antwort3Button.GetComponentInChildren<TMP_Text>().text = Mathf.Max(0, falscheAntwort + richtigeAntwort + Random.Range(-5, 6)).ToString();
             correctAnswer = richtigeAntwort;
         }
         else if (randomOption == 1)
         {
             antwort1Button.GetComponentInChildren<TMP_Text>().text = falscheAntwort.ToString();
             antwort2Button.GetComponentInChildren<TMP_Text>().text = richtigeAntwort.ToString();
-            antwort3Button.GetComponentInChildren<TMP_Text>().text = (falscheAntwort + Random.Range(-5, 6)).ToString();
+            antwort3Button.GetComponentInChildren<TMP_Text>().text = Mathf.Max(0, falscheAntwort + richtigeAntwort + Random.Range(-5, 6)).ToString();
             correctAnswer = richtigeAntwort;
         }
         else
         {
-            antwort1Button.GetComponentInChildren<TMP_Text>().text = (falscheAntwort + Random.Range(-5, 6)).ToString();
+            antwort3Button.GetComponentInChildren<TMP_Text>().text = Mathf.Max(0, falscheAntwort + richtigeAntwort + Random.Range(-5, 6)).ToString();
             antwort2Button.GetComponentInChildren<TMP_Text>().text = falscheAntwort.ToString();
             antwort3Button.GetComponentInChildren<TMP_Text>().text = richtigeAntwort.ToString();
             correctAnswer = richtigeAntwort;
@@ -79,6 +146,9 @@ public class QuizManager : MonoBehaviour
         Time.timeScale = 0;
         canSelectAnswer = true;
     }
+
+
+
 
     private void EndQuiz()
     {

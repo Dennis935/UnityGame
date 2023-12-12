@@ -42,6 +42,7 @@ public class Brick : MonoBehaviour
         isMathBrick = isMath;
     }
 
+
     // A method that handles the reflection of the ball from a brick when collision is detected
     private void ReflectBall(Collision collision, Action<int> callback)
     {
@@ -92,14 +93,35 @@ public class Brick : MonoBehaviour
         // Annahme: Diese Methode wird aufgerufen, wenn ein Math-Brick zerstört wird
 
         QuizManager quizManager = FindObjectOfType<QuizManager>();
-        quizManager.SetQuizVisibility(true);
+
         if (quizManager != null)
         {
-            quizManager.StartQuiz();
+            string currentScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+
+            if (currentScene == "Level1")
+            {
+                quizManager.SetQuizVisibility(true);
+                quizManager.StartQuiz(QuizManager.MathOperation.Addition);
+            }
+            else if (currentScene == "Level2")
+            {
+                quizManager.SetQuizVisibility(true);
+                quizManager.StartQuiz(QuizManager.MathOperation.Subtraction);
+            }
+            else if (currentScene == "Level3")
+            {
+                quizManager.SetQuizVisibility(true);
+                quizManager.StartQuiz(QuizManager.MathOperation.Multiplication);
+            }
+            else if (currentScene == "Level4")
+            {
+                quizManager.SetQuizVisibility(true);
+                quizManager.StartQuiz(QuizManager.MathOperation.Division);
+            }
         }
     }
 
-    // Finally handle the collision 
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ball"))
@@ -108,13 +130,24 @@ public class Brick : MonoBehaviour
             {
                 TakeDamage(result);
 
-                // Überprüfen Sie, ob es ein Math-Brick ist und setzen Sie die Sichtbarkeit des Quiz
+                // Check if it's a Math-Brick and set the visibility of the quiz
                 if (isMathBrick)
                 {
                     QuizManager quizManager = FindObjectOfType<QuizManager>();
                     if (quizManager != null)
                     {
-                        quizManager.SetQuizVisibility(true);
+                        // Check the active scene and call the appropriate StartQuiz method
+                        string currentScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+                        if (currentScene == "Level1")
+                        {
+                            quizManager.SetQuizVisibility(true);
+                            quizManager.StartQuiz(QuizManager.MathOperation.Addition);
+                        }
+                        else if (currentScene == "Level2")
+                        {
+                            quizManager.SetQuizVisibility(true);
+                            quizManager.StartQuiz(QuizManager.MathOperation.Subtraction);
+                        }
                     }
                 }
             });
