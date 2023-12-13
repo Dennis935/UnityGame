@@ -543,10 +543,10 @@ MonoBehaviour:
   reflectingForce: 0.2
   boxCollider: {fileID: 0}
   destructionEffect: {fileID: 0}
-  mathQuizSound: {fileID: 0}
+  mathQuizSound: {fileID: 8300000, guid: 071188f11763d174f98d4b3fd9d2f645, type: 3}
   director: {fileID: 1677992813}
   isMathBrick: 0
-  mathBrickMaterial: {fileID: 0}
+  mathBrickMaterial: {fileID: 2100000, guid: 7af318a3871604e46bbceb33d7c194b9, type: 2}
   nonMathDestroySound: {fileID: 0}
 --- !u!1 &155902577 stripped
 GameObject:
@@ -633,10 +633,10 @@ MonoBehaviour:
   reflectingForce: 0.2
   boxCollider: {fileID: 0}
   destructionEffect: {fileID: 0}
-  mathQuizSound: {fileID: 0}
+  mathQuizSound: {fileID: 8300000, guid: 071188f11763d174f98d4b3fd9d2f645, type: 3}
   director: {fileID: 1607247821}
   isMathBrick: 0
-  mathBrickMaterial: {fileID: 0}
+  mathBrickMaterial: {fileID: 2100000, guid: 7af318a3871604e46bbceb33d7c194b9, type: 2}
   nonMathDestroySound: {fileID: 0}
 --- !u!1 &162575558
 GameObject:
@@ -1244,10 +1244,10 @@ MonoBehaviour:
   reflectingForce: 0.2
   boxCollider: {fileID: 0}
   destructionEffect: {fileID: 0}
-  mathQuizSound: {fileID: 0}
+  mathQuizSound: {fileID: 8300000, guid: 071188f11763d174f98d4b3fd9d2f645, type: 3}
   director: {fileID: 1844166474}
   isMathBrick: 0
-  mathBrickMaterial: {fileID: 0}
+  mathBrickMaterial: {fileID: 2100000, guid: 7af318a3871604e46bbceb33d7c194b9, type: 2}
   nonMathDestroySound: {fileID: 0}
 --- !u!1001 &350883827
 PrefabInstance:
@@ -1621,10 +1621,10 @@ MonoBehaviour:
   reflectingForce: 0.2
   boxCollider: {fileID: 442745989}
   destructionEffect: {fileID: 0}
-  mathQuizSound: {fileID: 0}
+  mathQuizSound: {fileID: 8300000, guid: 071188f11763d174f98d4b3fd9d2f645, type: 3}
   director: {fileID: 2002037837}
   isMathBrick: 0
-  mathBrickMaterial: {fileID: 0}
+  mathBrickMaterial: {fileID: 2100000, guid: 7af318a3871604e46bbceb33d7c194b9, type: 2}
   nonMathDestroySound: {fileID: 0}
 --- !u!1 &478679928
 GameObject:
@@ -1659,6 +1659,8 @@ MonoBehaviour:
   antwort1Button: {fileID: 1920855627}
   antwort2Button: {fileID: 913924340}
   antwort3Button: {fileID: 1012750590}
+  correctAnswerSound: {fileID: 0}
+  wrongAnswerSound: {fileID: 0}
 --- !u!4 &478679930
 Transform:
   m_ObjectHideFlags: 0
@@ -2092,10 +2094,10 @@ MonoBehaviour:
   reflectingForce: 0.2
   boxCollider: {fileID: 536757410}
   destructionEffect: {fileID: 0}
-  mathQuizSound: {fileID: 0}
+  mathQuizSound: {fileID: 8300000, guid: 071188f11763d174f98d4b3fd9d2f645, type: 3}
   director: {fileID: 1835070516}
   isMathBrick: 0
-  mathBrickMaterial: {fileID: 0}
+  mathBrickMaterial: {fileID: 2100000, guid: 7af318a3871604e46bbceb33d7c194b9, type: 2}
   nonMathDestroySound: {fileID: 0}
 --- !u!1 &551355773
 GameObject:
@@ -2337,10 +2339,10 @@ MonoBehaviour:
   reflectingForce: 0.2
   boxCollider: {fileID: 0}
   destructionEffect: {fileID: 0}
-  mathQuizSound: {fileID: 0}
+  mathQuizSound: {fileID: 8300000, guid: 071188f11763d174f98d4b3fd9d2f645, type: 3}
   director: {fileID: 2007645027}
   isMathBrick: 0
-  mathBrickMaterial: {fileID: 0}
+  mathBrickMaterial: {fileID: 2100000, guid: 7af318a3871604e46bbceb33d7c194b9, type: 2}
   nonMathDestroySound: {fileID: 0}
 --- !u!1 &648911267 stripped
 GameObject:
@@ -2379,10 +2381,10 @@ MonoBehaviour:
   reflectingForce: 0.2
   boxCollider: {fileID: 648911271}
   destructionEffect: {fileID: 0}
-  mathQuizSound: {fileID: 0}
+  mathQuizSound: {fileID: 8300000, guid: 071188f11763d174f98d4b3fd9d2f645, type: 3}
   director: {fileID: 352473459}
   isMathBrick: 0
-  mathBrickMaterial: {fileID: 0}
+  mathBrickMaterial: {fileID: 2100000, guid: 7af318a3871604e46bbceb33d7c194b9, type: 2}
   nonMathDestroySound: {fileID: 0}
 --- !u!65 &648911271
 BoxCollider:
@@ -2711,10 +2713,10 @@ MonoBehaviour:
   reflectingForce: 0.2
   boxCollider: {fileID: 0}
   destructionEffect: {fileID: 0}
-  mathQuizSound: {fileID: 0}
+  mathQuizSound: {fileID: 8300000, guid: 071188f11763d174f98d4b3fd9d2f645, type: 3}
   director: {fileID: 967729988}
   isMathBrick: 0
-  mathBrickMaterial: {fileID: 0}
+  mathBrickMaterial: {fileID: 2100000, guid: 7af318a3871604e46bbceb33d7c194b9, type: 2}
   nonMathDestroySound: {fileID: 0}
 --- !u!1 &692914976 stripped
 GameObject:
@@ -2801,10 +2803,10 @@ MonoBehaviour:
   reflectingForce: 0.2
   boxCollider: {fileID: 692914979}
   destructionEffect: {fileID: 0}
-  mathQuizSound: {fileID: 0}
+  mathQuizSound: {fileID: 8300000, guid: 071188f11763d174f98d4b3fd9d2f645, type: 3}
   director: {fileID: 825058596}
   isMathBrick: 1
-  mathBrickMaterial: {fileID: 0}
+  mathBrickMaterial: {fileID: 2100000, guid: 7af318a3871604e46bbceb33d7c194b9, type: 2}
   nonMathDestroySound: {fileID: 0}
 --- !u!1 &693418970
 GameObject:
@@ -2979,10 +2981,10 @@ MonoBehaviour:
   reflectingForce: 0.2
   boxCollider: {fileID: 696732092}
   destructionEffect: {fileID: 0}
-  mathQuizSound: {fileID: 0}
+  mathQuizSound: {fileID: 8300000, guid: 071188f11763d174f98d4b3fd9d2f645, type: 3}
   director: {fileID: 2082990016}
   isMathBrick: 0
-  mathBrickMaterial: {fileID: 0}
+  mathBrickMaterial: {fileID: 2100000, guid: 7af318a3871604e46bbceb33d7c194b9, type: 2}
   nonMathDestroySound: {fileID: 0}
 --- !u!114 &696732089 stripped
 MonoBehaviour:
@@ -3484,10 +3486,10 @@ MonoBehaviour:
   reflectingForce: 0.2
   boxCollider: {fileID: 0}
   destructionEffect: {fileID: 0}
-  mathQuizSound: {fileID: 0}
+  mathQuizSound: {fileID: 8300000, guid: 071188f11763d174f98d4b3fd9d2f645, type: 3}
   director: {fileID: 1087009207}
   isMathBrick: 0
-  mathBrickMaterial: {fileID: 0}
+  mathBrickMaterial: {fileID: 2100000, guid: 7af318a3871604e46bbceb33d7c194b9, type: 2}
   nonMathDestroySound: {fileID: 0}
 --- !u!1001 &791309599
 PrefabInstance:
@@ -4058,10 +4060,10 @@ MonoBehaviour:
   reflectingForce: 0.2
   boxCollider: {fileID: 847675753}
   destructionEffect: {fileID: 0}
-  mathQuizSound: {fileID: 0}
+  mathQuizSound: {fileID: 8300000, guid: 071188f11763d174f98d4b3fd9d2f645, type: 3}
   director: {fileID: 1934856233}
   isMathBrick: 0
-  mathBrickMaterial: {fileID: 0}
+  mathBrickMaterial: {fileID: 2100000, guid: 7af318a3871604e46bbceb33d7c194b9, type: 2}
   nonMathDestroySound: {fileID: 0}
 --- !u!114 &847675756
 MonoBehaviour:
@@ -4378,10 +4380,10 @@ MonoBehaviour:
   reflectingForce: 0.2
   boxCollider: {fileID: 0}
   destructionEffect: {fileID: 0}
-  mathQuizSound: {fileID: 0}
+  mathQuizSound: {fileID: 8300000, guid: 071188f11763d174f98d4b3fd9d2f645, type: 3}
   director: {fileID: 1596518573}
   isMathBrick: 0
-  mathBrickMaterial: {fileID: 0}
+  mathBrickMaterial: {fileID: 2100000, guid: 7af318a3871604e46bbceb33d7c194b9, type: 2}
   nonMathDestroySound: {fileID: 0}
 --- !u!1001 &922268322
 PrefabInstance:
@@ -4970,10 +4972,10 @@ MonoBehaviour:
   reflectingForce: 0.2
   boxCollider: {fileID: 0}
   destructionEffect: {fileID: 0}
-  mathQuizSound: {fileID: 0}
+  mathQuizSound: {fileID: 8300000, guid: 071188f11763d174f98d4b3fd9d2f645, type: 3}
   director: {fileID: 936747719}
   isMathBrick: 0
-  mathBrickMaterial: {fileID: 0}
+  mathBrickMaterial: {fileID: 2100000, guid: 7af318a3871604e46bbceb33d7c194b9, type: 2}
   nonMathDestroySound: {fileID: 0}
 --- !u!1001 &1009102483
 PrefabInstance:
@@ -5278,10 +5280,10 @@ MonoBehaviour:
   reflectingForce: 0.2
   boxCollider: {fileID: 0}
   destructionEffect: {fileID: 0}
-  mathQuizSound: {fileID: 0}
+  mathQuizSound: {fileID: 8300000, guid: 071188f11763d174f98d4b3fd9d2f645, type: 3}
   director: {fileID: 1483542449}
   isMathBrick: 0
-  mathBrickMaterial: {fileID: 0}
+  mathBrickMaterial: {fileID: 2100000, guid: 7af318a3871604e46bbceb33d7c194b9, type: 2}
   nonMathDestroySound: {fileID: 0}
 --- !u!1001 &1025682272
 PrefabInstance:
@@ -5646,10 +5648,10 @@ MonoBehaviour:
   reflectingForce: 0.2
   boxCollider: {fileID: 0}
   destructionEffect: {fileID: 0}
-  mathQuizSound: {fileID: 0}
+  mathQuizSound: {fileID: 8300000, guid: 071188f11763d174f98d4b3fd9d2f645, type: 3}
   director: {fileID: 2049797274}
   isMathBrick: 0
-  mathBrickMaterial: {fileID: 0}
+  mathBrickMaterial: {fileID: 2100000, guid: 7af318a3871604e46bbceb33d7c194b9, type: 2}
   nonMathDestroySound: {fileID: 0}
 --- !u!1001 &1048833036
 PrefabInstance:
@@ -5833,10 +5835,10 @@ MonoBehaviour:
   reflectingForce: 0.2
   boxCollider: {fileID: 0}
   destructionEffect: {fileID: 0}
-  mathQuizSound: {fileID: 0}
+  mathQuizSound: {fileID: 8300000, guid: 071188f11763d174f98d4b3fd9d2f645, type: 3}
   director: {fileID: 1634542523}
   isMathBrick: 0
-  mathBrickMaterial: {fileID: 0}
+  mathBrickMaterial: {fileID: 2100000, guid: 7af318a3871604e46bbceb33d7c194b9, type: 2}
   nonMathDestroySound: {fileID: 0}
 --- !u!1 &1084212168 stripped
 GameObject:
@@ -5923,10 +5925,10 @@ MonoBehaviour:
   reflectingForce: 0.2
   boxCollider: {fileID: 0}
   destructionEffect: {fileID: 0}
-  mathQuizSound: {fileID: 0}
+  mathQuizSound: {fileID: 8300000, guid: 071188f11763d174f98d4b3fd9d2f645, type: 3}
   director: {fileID: 497673246}
   isMathBrick: 0
-  mathBrickMaterial: {fileID: 0}
+  mathBrickMaterial: {fileID: 2100000, guid: 7af318a3871604e46bbceb33d7c194b9, type: 2}
   nonMathDestroySound: {fileID: 0}
 --- !u!1 &1087009205
 GameObject:
@@ -6197,10 +6199,10 @@ MonoBehaviour:
   reflectingForce: 0.2
   boxCollider: {fileID: 0}
   destructionEffect: {fileID: 0}
-  mathQuizSound: {fileID: 0}
+  mathQuizSound: {fileID: 8300000, guid: 071188f11763d174f98d4b3fd9d2f645, type: 3}
   director: {fileID: 162575560}
   isMathBrick: 0
-  mathBrickMaterial: {fileID: 0}
+  mathBrickMaterial: {fileID: 2100000, guid: 7af318a3871604e46bbceb33d7c194b9, type: 2}
   nonMathDestroySound: {fileID: 0}
 --- !u!1001 &1136897688
 PrefabInstance:
@@ -6484,10 +6486,10 @@ MonoBehaviour:
   reflectingForce: 0.2
   boxCollider: {fileID: 0}
   destructionEffect: {fileID: 0}
-  mathQuizSound: {fileID: 0}
+  mathQuizSound: {fileID: 8300000, guid: 071188f11763d174f98d4b3fd9d2f645, type: 3}
   director: {fileID: 1288484380}
   isMathBrick: 0
-  mathBrickMaterial: {fileID: 0}
+  mathBrickMaterial: {fileID: 2100000, guid: 7af318a3871604e46bbceb33d7c194b9, type: 2}
   nonMathDestroySound: {fileID: 0}
 --- !u!1 &1256613884 stripped
 GameObject:
@@ -6574,10 +6576,10 @@ MonoBehaviour:
   reflectingForce: 0.2
   boxCollider: {fileID: 0}
   destructionEffect: {fileID: 0}
-  mathQuizSound: {fileID: 0}
+  mathQuizSound: {fileID: 8300000, guid: 071188f11763d174f98d4b3fd9d2f645, type: 3}
   director: {fileID: 695891300}
   isMathBrick: 0
-  mathBrickMaterial: {fileID: 0}
+  mathBrickMaterial: {fileID: 2100000, guid: 7af318a3871604e46bbceb33d7c194b9, type: 2}
   nonMathDestroySound: {fileID: 0}
 --- !u!1 &1288484378
 GameObject:
@@ -7418,10 +7420,10 @@ MonoBehaviour:
   reflectingForce: 0.2
   boxCollider: {fileID: 0}
   destructionEffect: {fileID: 0}
-  mathQuizSound: {fileID: 0}
+  mathQuizSound: {fileID: 8300000, guid: 071188f11763d174f98d4b3fd9d2f645, type: 3}
   director: {fileID: 551355775}
   isMathBrick: 0
-  mathBrickMaterial: {fileID: 0}
+  mathBrickMaterial: {fileID: 2100000, guid: 7af318a3871604e46bbceb33d7c194b9, type: 2}
   nonMathDestroySound: {fileID: 0}
 --- !u!1 &1510007538
 GameObject:
@@ -7842,10 +7844,10 @@ MonoBehaviour:
   reflectingForce: 0.2
   boxCollider: {fileID: 0}
   destructionEffect: {fileID: 0}
-  mathQuizSound: {fileID: 0}
+  mathQuizSound: {fileID: 8300000, guid: 071188f11763d174f98d4b3fd9d2f645, type: 3}
   director: {fileID: 1870057156}
   isMathBrick: 0
-  mathBrickMaterial: {fileID: 0}
+  mathBrickMaterial: {fileID: 2100000, guid: 7af318a3871604e46bbceb33d7c194b9, type: 2}
   nonMathDestroySound: {fileID: 0}
 --- !u!1 &1634542521
 GameObject:
@@ -8129,10 +8131,10 @@ MonoBehaviour:
   reflectingForce: 0.2
   boxCollider: {fileID: 0}
   destructionEffect: {fileID: 0}
-  mathQuizSound: {fileID: 0}
+  mathQuizSound: {fileID: 8300000, guid: 071188f11763d174f98d4b3fd9d2f645, type: 3}
   director: {fileID: 1510007540}
   isMathBrick: 0
-  mathBrickMaterial: {fileID: 0}
+  mathBrickMaterial: {fileID: 2100000, guid: 7af318a3871604e46bbceb33d7c194b9, type: 2}
   nonMathDestroySound: {fileID: 0}
 --- !u!1 &1701213917 stripped
 GameObject:
@@ -8219,10 +8221,10 @@ MonoBehaviour:
   reflectingForce: 0.2
   boxCollider: {fileID: 0}
   destructionEffect: {fileID: 0}
-  mathQuizSound: {fileID: 0}
+  mathQuizSound: {fileID: 8300000, guid: 071188f11763d174f98d4b3fd9d2f645, type: 3}
   director: {fileID: 2115877590}
   isMathBrick: 0
-  mathBrickMaterial: {fileID: 0}
+  mathBrickMaterial: {fileID: 2100000, guid: 7af318a3871604e46bbceb33d7c194b9, type: 2}
   nonMathDestroySound: {fileID: 0}
 --- !u!1 &1713583418
 GameObject:
@@ -8347,10 +8349,10 @@ MonoBehaviour:
   reflectingForce: 0.2
   boxCollider: {fileID: 0}
   destructionEffect: {fileID: 0}
-  mathQuizSound: {fileID: 0}
+  mathQuizSound: {fileID: 8300000, guid: 071188f11763d174f98d4b3fd9d2f645, type: 3}
   director: {fileID: 1914498818}
   isMathBrick: 0
-  mathBrickMaterial: {fileID: 0}
+  mathBrickMaterial: {fileID: 2100000, guid: 7af318a3871604e46bbceb33d7c194b9, type: 2}
   nonMathDestroySound: {fileID: 0}
 --- !u!1001 &1740443282
 PrefabInstance:
@@ -8773,10 +8775,10 @@ MonoBehaviour:
   reflectingForce: 0.2
   boxCollider: {fileID: 0}
   destructionEffect: {fileID: 0}
-  mathQuizSound: {fileID: 0}
+  mathQuizSound: {fileID: 8300000, guid: 071188f11763d174f98d4b3fd9d2f645, type: 3}
   director: {fileID: 1604327154}
   isMathBrick: 0
-  mathBrickMaterial: {fileID: 0}
+  mathBrickMaterial: {fileID: 2100000, guid: 7af318a3871604e46bbceb33d7c194b9, type: 2}
   nonMathDestroySound: {fileID: 0}
 --- !u!1 &1835070514
 GameObject:
@@ -9013,10 +9015,10 @@ MonoBehaviour:
   reflectingForce: 0.2
   boxCollider: {fileID: 1897495754}
   destructionEffect: {fileID: 0}
-  mathQuizSound: {fileID: 0}
+  mathQuizSound: {fileID: 8300000, guid: 071188f11763d174f98d4b3fd9d2f645, type: 3}
   director: {fileID: 1977282860}
   isMathBrick: 1
-  mathBrickMaterial: {fileID: 0}
+  mathBrickMaterial: {fileID: 2100000, guid: 7af318a3871604e46bbceb33d7c194b9, type: 2}
   nonMathDestroySound: {fileID: 0}
 --- !u!1 &1914498816
 GameObject:
