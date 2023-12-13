@@ -57,10 +57,9 @@ public class QuizManager : MonoBehaviour
         {
             do
             {
-                zahl2 = Random.Range(2, 101);  
-                int maxQuotient = 200 / zahl2;
-                zahl1 = Random.Range(2, maxQuotient + 1) * zahl2; 
-            } while (zahl1 == zahl2);  
+                zahl1 = Random.Range(2, 101);  
+                zahl2 = Random.Range(2, 21);   
+            } while (zahl1 % zahl2 != 0);  
         }
         else
         {
