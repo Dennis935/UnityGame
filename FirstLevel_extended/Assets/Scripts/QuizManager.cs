@@ -61,20 +61,20 @@ public class QuizManager : MonoBehaviour
 
         if (mathOperation == MathOperation.Multiplication)
         {
-            zahl1 = Random.Range(2, 11);
+            zahl1 = Random.Range(2, 11); 
             zahl2 = Random.Range(2, 11);
         }
         else if (mathOperation == MathOperation.Division)
         {
             do
             {
-                zahl1 = Random.Range(2, 101);
-                zahl2 = Random.Range(2, 21);
-            } while (zahl1 % zahl2 != 0);
+                zahl1 = Random.Range(2, 101);  
+                zahl2 = Random.Range(2, 21);   
+            } while (zahl1 % zahl2 != 0);  
         }
         else
         {
-            zahl1 = Random.Range(2, 101);
+            zahl1 = Random.Range(2, 101); 
             zahl2 = Random.Range(2, 101);
         }
 
@@ -127,18 +127,15 @@ public class QuizManager : MonoBehaviour
             $"{zahl1} * {zahl2}?" :
             $"{zahl1} : {zahl2}?";
 
-        // Generate random offsets within the range of ±10
-        int offset1 = Random.Range(-10, 11);
-        int offset2 = Random.Range(-10, 11);
-        int offset3 = Random.Range(-10, 11);
+        int randomOption = Random.Range(0, 3);
 
-        // Ensure that all three answers are unique and within the specified range
+        // alle 3 Antworten eindeutig sind
         do
         {
             correctAnswer = richtigeAntwort;
-            antwort1Button.GetComponentInChildren<TMP_Text>().text = (correctAnswer + offset1).ToString();
-            antwort2Button.GetComponentInChildren<TMP_Text>().text = (falscheAntwort + offset2).ToString();
-            antwort3Button.GetComponentInChildren<TMP_Text>().text = (falscheAntwort + offset3).ToString();
+            antwort1Button.GetComponentInChildren<TMP_Text>().text = correctAnswer.ToString();
+            antwort2Button.GetComponentInChildren<TMP_Text>().text = falscheAntwort.ToString();
+            antwort3Button.GetComponentInChildren<TMP_Text>().text = Mathf.Max(0, falscheAntwort + richtigeAntwort + Random.Range(-5, 6)).ToString();
         } while (antwort2Button.GetComponentInChildren<TMP_Text>().text == antwort3Button.GetComponentInChildren<TMP_Text>().text ||
                  antwort1Button.GetComponentInChildren<TMP_Text>().text == antwort2Button.GetComponentInChildren<TMP_Text>().text ||
                  antwort1Button.GetComponentInChildren<TMP_Text>().text == antwort3Button.GetComponentInChildren<TMP_Text>().text);
@@ -148,7 +145,6 @@ public class QuizManager : MonoBehaviour
         Time.timeScale = 0;
         canSelectAnswer = true;
     }
-
 
 
     private void EndQuiz(bool isCorrect)
