@@ -1659,6 +1659,8 @@ MonoBehaviour:
   antwort1Button: {fileID: 1920855627}
   antwort2Button: {fileID: 913924340}
   antwort3Button: {fileID: 1012750590}
+  correctAnswerSound: {fileID: 8300000, guid: 0ef9dd3e9ef3a0d4da576418981e019e, type: 3}
+  wrongAnswerSound: {fileID: 8300000, guid: cc8604c3c11acb54cafe64999c30d96f, type: 3}
 --- !u!4 &478679930
 Transform:
   m_ObjectHideFlags: 0

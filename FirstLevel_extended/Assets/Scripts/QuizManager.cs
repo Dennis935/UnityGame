@@ -13,6 +13,9 @@ public class QuizManager : MonoBehaviour
     private Color normalColor;
     private int correctAnswer;
     private int falscheAntwort;
+    public AudioClip correctAnswerSound;
+    public AudioClip wrongAnswerSound;
+    private AudioSource audioSource;
     public bool isVisible { get; private set; } = false; 
 
     public void Start()
@@ -23,6 +26,14 @@ public class QuizManager : MonoBehaviour
         antwort2Button.onClick.AddListener(OnAntwort2Click);
         antwort3Button.onClick.AddListener(OnAntwort3Click);
         normalColor = antwort1Button.GetComponent<Image>().color;
+        audioSource = gameObject.GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+
+        // Set up the audio source properties
+        audioSource.playOnAwake = false;
 
         SetQuizVisibility(false);
     }
@@ -136,10 +147,22 @@ public class QuizManager : MonoBehaviour
     }
 
 
-    private void EndQuiz()
+    private void EndQuiz(bool isCorrect)
     {
         SetQuizVisibility(false);
         Time.timeScale = 1;
+
+        // Play the appropriate audio feedback
+        if (isCorrect && correctAnswerSound != null)
+        {
+            audioSource.clip = correctAnswerSound;
+            audioSource.Play();
+        }
+        else if (!isCorrect && wrongAnswerSound != null)
+        {
+            audioSource.clip = wrongAnswerSound;
+            audioSource.Play();
+        }
     }
 
     private void OnAntwort1Click()
@@ -148,7 +171,7 @@ public class QuizManager : MonoBehaviour
         {
             if (antwort1Button.GetComponentInChildren<TMP_Text>().text == correctAnswer.ToString())
             {
-                EndQuiz();
+                EndQuiz(true);
                 ScoreManager scoreManager = FindObjectOfType<ScoreManager>();
                 if (scoreManager != null)
                 {
@@ -157,8 +180,8 @@ public class QuizManager : MonoBehaviour
             }
             else
             {
+                EndQuiz(false);
                 gameController.LooseALife();
-                EndQuiz();
             }
         }
     }
@@ -169,7 +192,7 @@ public class QuizManager : MonoBehaviour
         {
             if (antwort2Button.GetComponentInChildren<TMP_Text>().text == correctAnswer.ToString())
             {
-                EndQuiz();
+                EndQuiz(true);
                 ScoreManager scoreManager = FindObjectOfType<ScoreManager>();
                 if (scoreManager != null)
                 {
@@ -178,9 +201,8 @@ public class QuizManager : MonoBehaviour
             }
             else
             {
+                EndQuiz(false);
                 gameController.LooseALife();
-                Debug.Log("Leben abgezogen");
-                EndQuiz();
             }
         }
     }
@@ -191,7 +213,7 @@ public class QuizManager : MonoBehaviour
         {
             if (antwort3Button.GetComponentInChildren<TMP_Text>().text == correctAnswer.ToString())
             {
-                EndQuiz();
+                EndQuiz(true);
                 ScoreManager scoreManager = FindObjectOfType<ScoreManager>();
                 if (scoreManager != null)
                 {
@@ -200,12 +222,12 @@ public class QuizManager : MonoBehaviour
             }
             else
             {
+                EndQuiz(false);
                 gameController.LooseALife();
-                Debug.Log("Leben abgezogen");
-                EndQuiz();
             }
         }
     }
+
 
     void Update()
     {
