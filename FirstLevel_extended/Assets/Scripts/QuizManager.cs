@@ -16,7 +16,7 @@ public class QuizManager : MonoBehaviour
     public AudioClip correctAnswerSound;
     public AudioClip wrongAnswerSound;
     private AudioSource audioSource;
-    public bool isVisible { get; private set; } = false; 
+    public bool isVisible { get; private set; } = false;
 
     public void Start()
     {
@@ -61,20 +61,20 @@ public class QuizManager : MonoBehaviour
 
         if (mathOperation == MathOperation.Multiplication)
         {
-            zahl1 = Random.Range(2, 11); 
+            zahl1 = Random.Range(2, 11);
             zahl2 = Random.Range(2, 11);
         }
         else if (mathOperation == MathOperation.Division)
         {
             do
             {
-                zahl1 = Random.Range(2, 101);  
-                zahl2 = Random.Range(2, 21);   
-            } while (zahl1 % zahl2 != 0);  
+                zahl1 = Random.Range(2, 101);
+                zahl2 = Random.Range(2, 21);
+            } while (zahl1 % zahl2 != 0);
         }
         else
         {
-            zahl1 = Random.Range(2, 101); 
+            zahl1 = Random.Range(2, 101);
             zahl2 = Random.Range(2, 101);
         }
 
@@ -135,7 +135,7 @@ public class QuizManager : MonoBehaviour
             correctAnswer = richtigeAntwort;
             antwort1Button.GetComponentInChildren<TMP_Text>().text = correctAnswer.ToString();
             antwort2Button.GetComponentInChildren<TMP_Text>().text = falscheAntwort.ToString();
-            antwort3Button.GetComponentInChildren<TMP_Text>().text = Mathf.Max(0, falscheAntwort + richtigeAntwort + Random.Range(-5, 6)).ToString();
+            antwort3Button.GetComponentInChildren<TMP_Text>().text = Mathf.Max(0, falscheAntwort + Random.Range(-5, 6)).ToString();
         } while (antwort2Button.GetComponentInChildren<TMP_Text>().text == antwort3Button.GetComponentInChildren<TMP_Text>().text ||
                  antwort1Button.GetComponentInChildren<TMP_Text>().text == antwort2Button.GetComponentInChildren<TMP_Text>().text ||
                  antwort1Button.GetComponentInChildren<TMP_Text>().text == antwort3Button.GetComponentInChildren<TMP_Text>().text);
