@@ -13,7 +13,6 @@ public class CameraShake : MonoBehaviour
         }
     }
 
-    // Funktion für das Schütteln der Kamera
     public IEnumerator Shake(float duration, float magnitude)
     {
         Vector3 originalPosition = transform.localPosition;
@@ -21,6 +20,12 @@ public class CameraShake : MonoBehaviour
 
         while (elapsed < duration)
         {
+            QuizManager quizManager = FindObjectOfType<QuizManager>();
+            if (quizManager != null && quizManager.isVisible)
+            {
+                break; 
+            }
+
             float x = Random.Range(-1f, 1f) * magnitude;
             float y = Random.Range(-1f, 1f) * magnitude;
 

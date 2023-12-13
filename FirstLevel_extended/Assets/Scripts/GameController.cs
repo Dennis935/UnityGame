@@ -5,19 +5,19 @@ using TMPro;
 public class GameController : MonoBehaviour
 {
     [SerializeField]
-    private int lives = 3; // The amount of lives (balls) we grant the player
+    private int lives = 3; 
     [SerializeField]
-    private TMP_Text livesTextInfo;  // The score lable that shows the remaining lives
+    private TMP_Text livesTextInfo;  
     [SerializeField]
-    private GameObject ballPrefab; // The ball prefab that is to instantiate 
+    private GameObject ballPrefab; 
     [SerializeField]
-    private Vector3 ballStartPosition; // The startposition of the ball
+    private Vector3 ballStartPosition; 
     [SerializeField]
-    private Vector3 paddleStartPosition; // The startposition of the paddle
+    private Vector3 paddleStartPosition; 
     [SerializeField]
-    private PaddleControl paddle; // the paddle
+    private PaddleControl paddle; 
     [SerializeField]
-    private Canvas gameOverScreen; // the UI Canvas shown when the last ball is dropped 
+    private Canvas gameOverScreen; 
     [SerializeField]
     private AudioSource audiosource;
     [SerializeField]
@@ -29,8 +29,8 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         SetMathBricks();
-        SpawnNewBall(); // Spawn a new Ball when new Game or Ball is dropped 
-        InvokeRepeating("CheckForEndGame", 20, 3); // Check every second if all Bricks have been destroyed and then restart game
+        SpawnNewBall(); 
+        InvokeRepeating("CheckForEndGame", 20, 3); 
         gameOverScreen.GetComponent<Canvas>().enabled = false;
         LevelCompleteText.enabled = false;
         quizManager.SetQuizVisibility(false);
@@ -48,7 +48,7 @@ public class GameController : MonoBehaviour
         {
             SavePlayerScore();
             gameOverScreen.GetComponent<Canvas>().enabled = true;
-            Time.timeScale = 0;
+            //Time.timeScale = 0;
             audiosource.Stop();
             Invoke("LoadHighscoreSceneWithDelay", 3f);
         }
@@ -61,20 +61,16 @@ public class GameController : MonoBehaviour
 
     private void SavePlayerScore()
     {
-        // Lade den vorhandenen Spielername
         string playerName = PlayerPrefs.GetString("PlayerName", "");
 
-        // Speichere den Spielername
         PlayerPrefs.SetString("PlayerName", playerName);
 
-        // Speichere den Score
         ScoreManager scoreManager = FindObjectOfType<ScoreManager>();
         if (scoreManager != null)
         {
             PlayerPrefs.SetInt("Score", scoreManager.GetScore());
         }
 
-        // Speichere die Änderungen in PlayerPrefs
         PlayerPrefs.Save();
     }
 
@@ -105,7 +101,7 @@ public class GameController : MonoBehaviour
 
         if (lives > 0)
         {
-            ReSetBallAndPaddle(); // Reset Ball and Paddle after Ball was dropped but still lives left
+            ReSetBallAndPaddle(); 
         }
     }
 
@@ -165,7 +161,6 @@ public class GameController : MonoBehaviour
             SavePlayerScore();
             LevelCompleteText.enabled = true;
 
-            // Set a delay of 3 seconds before loading the next scene
             Invoke("LoadNextSceneWithDelay", 3f);
 
         }

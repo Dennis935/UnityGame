@@ -4,10 +4,10 @@ using System.Collections.Generic;
 
 public class HighscoreDisplay : MonoBehaviour
 {
-    public TMP_Text[] playerNameTexts; // Array für die Spielername-Textobjekte
-    public TMP_Text[] scoreTexts; // Array für die Score-Textobjekte
+    public TMP_Text[] playerNameTexts; 
+    public TMP_Text[] scoreTexts; 
 
-    private const int MaxHighscores = 5; // Maximale Anzahl von Highscores
+    private const int MaxHighscores = 5; 
 
     private List<HighscoreEntry> highscores;
 
@@ -46,12 +46,11 @@ public class HighscoreDisplay : MonoBehaviour
             }
             else
             {
-                // Wenn ein Eintrag fehlt, breche die Schleife ab
+              
                 break;
             }
         }
 
-        // Sortiere die Highscores absteigend nach der Punktzahl
         highscores.Sort((a, b) => b.score.CompareTo(a.score));
     }
 
@@ -71,7 +70,6 @@ public class HighscoreDisplay : MonoBehaviour
 
     public void UpdateHighscores(string playerName, int score)
     {
-        // Überprüfe, ob der Spieler bereits in den Highscores ist
         int existingIndex = -1;
         for (int i = 0; i < highscores.Count; i++)
         {
@@ -82,13 +80,11 @@ public class HighscoreDisplay : MonoBehaviour
             }
         }
 
-        // Wenn der Spieler bereits in den Highscores ist und der neue Score besser ist, aktualisiere den Score
         if (existingIndex != -1 && score > highscores[existingIndex].score)
         {
             highscores[existingIndex].score = score;
-            highscores.Sort((a, b) => b.score.CompareTo(a.score)); // Sortiere die Highscores absteigend nach der Punktzahl
+            highscores.Sort((a, b) => b.score.CompareTo(a.score));
         }
-        // Wenn der Spieler nicht in den Highscores ist, füge ihn hinzu (nur wenn die Anzahl der Highscores nicht das Limit überschreitet)
         else if (existingIndex == -1 && highscores.Count < MaxHighscores)
         {
             HighscoreEntry newEntry = new HighscoreEntry
@@ -98,13 +94,11 @@ public class HighscoreDisplay : MonoBehaviour
             };
 
             highscores.Add(newEntry);
-            highscores.Sort((a, b) => b.score.CompareTo(a.score)); // Sortiere die Highscores absteigend nach der Punktzahl
+            highscores.Sort((a, b) => b.score.CompareTo(a.score)); 
         }
 
-        // Speichere die aktualisierten Highscores
         SaveHighscores();
 
-        // Zeige die aktualisierten Highscores an
         DisplayHighscores();
     }
 
