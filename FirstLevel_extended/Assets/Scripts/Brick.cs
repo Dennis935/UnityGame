@@ -14,11 +14,12 @@ public class Brick : MonoBehaviour
     [SerializeField]
     private ParticleSystem destructionEffect; // have a particle effect to play during brick destruction
     [SerializeField]
-    private AudioClip destroySound; // have a soundeffect to play during destruction
+    public AudioClip mathQuizSound; // have a soundeffect to play during destruction
     [SerializeField]
     private PlayableDirector director; // the reference to the "Timeline" that has the PlayableDirector component to play at destruction
     [SerializeField] public bool isMathBrick = false; // make the distinction if this is a math brick to implement the math learning goal.. 
     [SerializeField] public Material mathBrickMaterial;
+    [SerializeField] private AudioClip nonMathDestroySound;
 
     // Private fileds
     private int currentHitPoints; // the current hit points the brick has left
@@ -68,12 +69,33 @@ public class Brick : MonoBehaviour
         if (boxCollider) boxCollider.enabled = false;
 
         if (destructionEffect) destructionEffect.Play();
-        if (destroySound != null)
+        if (isMathBrick && mathQuizSound != null)
         {
-            AudioSource audioSource = gameObject.AddComponent<AudioSource>();
-            audioSource.clip = destroySound;
+            AudioSource audioSource = GetComponent<AudioSource>();
+            if (audioSource == null)
+            {
+                // If the Audio Source component is not already attached, add it
+                audioSource = gameObject.AddComponent<AudioSource>();
+            }
+
+            audioSource.clip = mathQuizSound;
             audioSource.Play();
-            Destroy(audioSource, destroySound.length); // Destroy the AudioSource component after playing the sound
+        }
+        else
+        {
+            // If it's not a math brick, play a different destroy sound
+            if (nonMathDestroySound != null)
+            {
+                AudioSource audioSource = GetComponent<AudioSource>();
+                if (audioSource == null)
+                {
+                    // If the Audio Source component is not already attached, add it
+                    audioSource = gameObject.AddComponent<AudioSource>();
+                }
+
+                audioSource.clip = nonMathDestroySound;
+                audioSource.Play();
+            }
         }
 
         if (director) director.Play();
