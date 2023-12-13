@@ -48,7 +48,7 @@ public class GameController : MonoBehaviour
         {
             SavePlayerScore();
             gameOverScreen.GetComponent<Canvas>().enabled = true;
-            Time.timeScale = 0;
+            //Time.timeScale = 0;
             audiosource.Stop();
             Invoke("LoadHighscoreSceneWithDelay", 3f);
         }

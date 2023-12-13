@@ -21,6 +21,13 @@ public class CameraShake : MonoBehaviour
 
         while (elapsed < duration)
         {
+            // Überprüfe, ob das QuizManager-Objekt existiert und das Quiz sichtbar ist
+            QuizManager quizManager = FindObjectOfType<QuizManager>();
+            if (quizManager != null && quizManager.isVisible)
+            {
+                break; // Beende die Schleife vorzeitig
+            }
+
             float x = Random.Range(-1f, 1f) * magnitude;
             float y = Random.Range(-1f, 1f) * magnitude;
 

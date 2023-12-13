@@ -20,12 +20,12 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientSkyColor: {r: 1, g: 1, b: 1, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 0
-  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
+  m_AmbientMode: 3
+  m_SubtractiveShadowColor: {r: 0.3042453, g: 0.33294764, b: 0.4056604, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
@@ -546,7 +546,6 @@ MonoBehaviour:
   destroySound: {fileID: 0}
   director: {fileID: 1677992813}
   isMathBrick: 0
-  mathBrickMaterial: {fileID: 0}
 --- !u!1 &155902577 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 109005573213714932, guid: 890b48f4944e4e34ebf8037bdc47eb9a, type: 3}
@@ -635,7 +634,6 @@ MonoBehaviour:
   destroySound: {fileID: 0}
   director: {fileID: 1607247821}
   isMathBrick: 0
-  mathBrickMaterial: {fileID: 0}
 --- !u!1 &162575558
 GameObject:
   m_ObjectHideFlags: 0
@@ -1245,7 +1243,6 @@ MonoBehaviour:
   destroySound: {fileID: 0}
   director: {fileID: 1844166474}
   isMathBrick: 0
-  mathBrickMaterial: {fileID: 0}
 --- !u!1001 &350883827
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1621,7 +1618,6 @@ MonoBehaviour:
   destroySound: {fileID: 0}
   director: {fileID: 2002037837}
   isMathBrick: 0
-  mathBrickMaterial: {fileID: 0}
 --- !u!1 &478679928
 GameObject:
   m_ObjectHideFlags: 0
@@ -2091,7 +2087,6 @@ MonoBehaviour:
   destroySound: {fileID: 0}
   director: {fileID: 1835070516}
   isMathBrick: 0
-  mathBrickMaterial: {fileID: 0}
 --- !u!1 &551355773
 GameObject:
   m_ObjectHideFlags: 0
@@ -2335,7 +2330,6 @@ MonoBehaviour:
   destroySound: {fileID: 0}
   director: {fileID: 2007645027}
   isMathBrick: 0
-  mathBrickMaterial: {fileID: 0}
 --- !u!1 &648911267 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 109005573213714932, guid: 890b48f4944e4e34ebf8037bdc47eb9a, type: 3}
@@ -2376,7 +2370,6 @@ MonoBehaviour:
   destroySound: {fileID: 0}
   director: {fileID: 352473459}
   isMathBrick: 0
-  mathBrickMaterial: {fileID: 0}
 --- !u!65 &648911271
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2707,7 +2700,6 @@ MonoBehaviour:
   destroySound: {fileID: 0}
   director: {fileID: 967729988}
   isMathBrick: 0
-  mathBrickMaterial: {fileID: 0}
 --- !u!1 &692914976 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 109005573213714932, guid: 890b48f4944e4e34ebf8037bdc47eb9a, type: 3}
@@ -2796,7 +2788,6 @@ MonoBehaviour:
   destroySound: {fileID: 0}
   director: {fileID: 825058596}
   isMathBrick: 1
-  mathBrickMaterial: {fileID: 0}
 --- !u!1 &693418970
 GameObject:
   m_ObjectHideFlags: 0
@@ -2973,7 +2964,6 @@ MonoBehaviour:
   destroySound: {fileID: 0}
   director: {fileID: 2082990016}
   isMathBrick: 0
-  mathBrickMaterial: {fileID: 0}
 --- !u!114 &696732089 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: -8816176610123157718, guid: 890b48f4944e4e34ebf8037bdc47eb9a, type: 3}
@@ -3477,7 +3467,6 @@ MonoBehaviour:
   destroySound: {fileID: 0}
   director: {fileID: 1087009207}
   isMathBrick: 0
-  mathBrickMaterial: {fileID: 0}
 --- !u!1001 &791309599
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4050,7 +4039,6 @@ MonoBehaviour:
   destroySound: {fileID: 0}
   director: {fileID: 1934856233}
   isMathBrick: 0
-  mathBrickMaterial: {fileID: 0}
 --- !u!114 &847675756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4369,7 +4357,6 @@ MonoBehaviour:
   destroySound: {fileID: 0}
   director: {fileID: 1596518573}
   isMathBrick: 0
-  mathBrickMaterial: {fileID: 0}
 --- !u!1001 &922268322
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4960,7 +4947,6 @@ MonoBehaviour:
   destroySound: {fileID: 0}
   director: {fileID: 936747719}
   isMathBrick: 0
-  mathBrickMaterial: {fileID: 0}
 --- !u!1001 &1009102483
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5267,7 +5253,6 @@ MonoBehaviour:
   destroySound: {fileID: 0}
   director: {fileID: 1483542449}
   isMathBrick: 0
-  mathBrickMaterial: {fileID: 0}
 --- !u!1001 &1025682272
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5634,7 +5619,6 @@ MonoBehaviour:
   destroySound: {fileID: 0}
   director: {fileID: 2049797274}
   isMathBrick: 0
-  mathBrickMaterial: {fileID: 0}
 --- !u!1001 &1048833036
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5820,7 +5804,6 @@ MonoBehaviour:
   destroySound: {fileID: 0}
   director: {fileID: 1634542523}
   isMathBrick: 0
-  mathBrickMaterial: {fileID: 0}
 --- !u!1 &1084212168 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 109005573213714932, guid: 890b48f4944e4e34ebf8037bdc47eb9a, type: 3}
@@ -5909,7 +5892,6 @@ MonoBehaviour:
   destroySound: {fileID: 0}
   director: {fileID: 497673246}
   isMathBrick: 0
-  mathBrickMaterial: {fileID: 0}
 --- !u!1 &1087009205
 GameObject:
   m_ObjectHideFlags: 0
@@ -6182,7 +6164,6 @@ MonoBehaviour:
   destroySound: {fileID: 0}
   director: {fileID: 162575560}
   isMathBrick: 0
-  mathBrickMaterial: {fileID: 0}
 --- !u!1001 &1136897688
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6468,7 +6449,6 @@ MonoBehaviour:
   destroySound: {fileID: 0}
   director: {fileID: 1288484380}
   isMathBrick: 0
-  mathBrickMaterial: {fileID: 0}
 --- !u!1 &1256613884 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 109005573213714932, guid: 890b48f4944e4e34ebf8037bdc47eb9a, type: 3}
@@ -6557,7 +6537,6 @@ MonoBehaviour:
   destroySound: {fileID: 0}
   director: {fileID: 695891300}
   isMathBrick: 0
-  mathBrickMaterial: {fileID: 0}
 --- !u!1 &1288484378
 GameObject:
   m_ObjectHideFlags: 0
@@ -7400,7 +7379,6 @@ MonoBehaviour:
   destroySound: {fileID: 0}
   director: {fileID: 551355775}
   isMathBrick: 0
-  mathBrickMaterial: {fileID: 0}
 --- !u!1 &1510007538
 GameObject:
   m_ObjectHideFlags: 0
@@ -7823,7 +7801,6 @@ MonoBehaviour:
   destroySound: {fileID: 0}
   director: {fileID: 1870057156}
   isMathBrick: 0
-  mathBrickMaterial: {fileID: 0}
 --- !u!1 &1634542521
 GameObject:
   m_ObjectHideFlags: 0
@@ -8109,7 +8086,6 @@ MonoBehaviour:
   destroySound: {fileID: 0}
   director: {fileID: 1510007540}
   isMathBrick: 0
-  mathBrickMaterial: {fileID: 0}
 --- !u!1 &1701213917 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 109005573213714932, guid: 890b48f4944e4e34ebf8037bdc47eb9a, type: 3}
@@ -8198,7 +8174,6 @@ MonoBehaviour:
   destroySound: {fileID: 0}
   director: {fileID: 2115877590}
   isMathBrick: 0
-  mathBrickMaterial: {fileID: 0}
 --- !u!1 &1713583418
 GameObject:
   m_ObjectHideFlags: 0
@@ -8325,7 +8300,6 @@ MonoBehaviour:
   destroySound: {fileID: 0}
   director: {fileID: 1914498818}
   isMathBrick: 0
-  mathBrickMaterial: {fileID: 0}
 --- !u!1001 &1740443282
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8750,7 +8724,6 @@ MonoBehaviour:
   destroySound: {fileID: 0}
   director: {fileID: 1604327154}
   isMathBrick: 0
-  mathBrickMaterial: {fileID: 0}
 --- !u!1 &1835070514
 GameObject:
   m_ObjectHideFlags: 0
@@ -8989,7 +8962,6 @@ MonoBehaviour:
   destroySound: {fileID: 0}
   director: {fileID: 1977282860}
   isMathBrick: 1
-  mathBrickMaterial: {fileID: 0}
 --- !u!1 &1914498816
 GameObject:
   m_ObjectHideFlags: 0

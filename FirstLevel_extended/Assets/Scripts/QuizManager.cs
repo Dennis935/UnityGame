@@ -13,6 +13,7 @@ public class QuizManager : MonoBehaviour
     private Color normalColor;
     private int correctAnswer;
     private int falscheAntwort;
+    public bool isVisible { get; private set; } = false; // Neue Variable für die Sichtbarkeit
 
     public void Start()
     {
@@ -36,6 +37,7 @@ public class QuizManager : MonoBehaviour
 
     public void SetQuizVisibility(bool visible)
     {
+        isVisible = visible;
         frageText.gameObject.SetActive(visible);
         antwort1Button.gameObject.SetActive(visible);
         antwort2Button.gameObject.SetActive(visible);
