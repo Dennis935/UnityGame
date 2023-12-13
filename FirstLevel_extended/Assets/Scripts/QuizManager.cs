@@ -13,10 +13,7 @@ public class QuizManager : MonoBehaviour
     private Color normalColor;
     private int correctAnswer;
     private int falscheAntwort;
-    public AudioSource backgroundMusicAudioSource;
-    public AudioSource audioSource;
-    public AudioClip correctAnswerSound;
-    public AudioClip wrongAnswerSound;
+    public bool isVisible { get; private set; } = false; 
 
     public void Start()
     {
@@ -40,6 +37,7 @@ public class QuizManager : MonoBehaviour
 
     public void SetQuizVisibility(bool visible)
     {
+        isVisible = visible;
         frageText.gameObject.SetActive(visible);
         antwort1Button.gameObject.SetActive(visible);
         antwort2Button.gameObject.SetActive(visible);
@@ -52,22 +50,21 @@ public class QuizManager : MonoBehaviour
 
         if (mathOperation == MathOperation.Multiplication)
         {
-            zahl1 = Random.Range(1, 11);
-            zahl2 = Random.Range(1, 11);
+            zahl1 = Random.Range(2, 11); 
+            zahl2 = Random.Range(2, 11);
         }
         else if (mathOperation == MathOperation.Division)
         {
             do
             {
-                zahl2 = Random.Range(2, 1001);
-                int maxQuotient = 1000 / zahl2;
-                zahl1 = Random.Range(2, maxQuotient + 1) * zahl2; // Ensure zahl1 is not 1
-            } while (zahl1 == zahl2);  // Repeat until zahl1 is different from zahl2
+                zahl1 = Random.Range(2, 101);  
+                zahl2 = Random.Range(2, 21);   
+            } while (zahl1 % zahl2 != 0);  
         }
         else
         {
-            zahl1 = Random.Range(1, 51);
-            zahl2 = Random.Range(1, 51);
+            zahl1 = Random.Range(2, 101); 
+            zahl2 = Random.Range(2, 101);
         }
 
         int richtigeAntwort;
@@ -78,7 +75,6 @@ public class QuizManager : MonoBehaviour
         }
         else if (mathOperation == MathOperation.Subtraction)
         {
-            // Ensure that the result is positive for subtraction
             if (zahl1 >= zahl2)
             {
                 richtigeAntwort = zahl1 - zahl2;
@@ -101,7 +97,6 @@ public class QuizManager : MonoBehaviour
         }
         else
         {
-            // Handle other math operations if needed
             richtigeAntwort = 0;
         }
 
@@ -123,27 +118,16 @@ public class QuizManager : MonoBehaviour
 
         int randomOption = Random.Range(0, 3);
 
-        if (randomOption == 0)
+        // alle 3 Antworten eindeutig sind
+        do
         {
-            antwort1Button.GetComponentInChildren<TMP_Text>().text = richtigeAntwort.ToString();
+            correctAnswer = richtigeAntwort;
+            antwort1Button.GetComponentInChildren<TMP_Text>().text = correctAnswer.ToString();
             antwort2Button.GetComponentInChildren<TMP_Text>().text = falscheAntwort.ToString();
             antwort3Button.GetComponentInChildren<TMP_Text>().text = Mathf.Max(0, falscheAntwort + richtigeAntwort + Random.Range(-5, 6)).ToString();
-            correctAnswer = richtigeAntwort;
-        }
-        else if (randomOption == 1)
-        {
-            antwort1Button.GetComponentInChildren<TMP_Text>().text = falscheAntwort.ToString();
-            antwort2Button.GetComponentInChildren<TMP_Text>().text = richtigeAntwort.ToString();
-            antwort3Button.GetComponentInChildren<TMP_Text>().text = Mathf.Max(0, falscheAntwort + richtigeAntwort + Random.Range(-5, 6)).ToString();
-            correctAnswer = richtigeAntwort;
-        }
-        else
-        {
-            antwort3Button.GetComponentInChildren<TMP_Text>().text = Mathf.Max(0, falscheAntwort + richtigeAntwort + Random.Range(-5, 6)).ToString();
-            antwort2Button.GetComponentInChildren<TMP_Text>().text = falscheAntwort.ToString();
-            antwort3Button.GetComponentInChildren<TMP_Text>().text = richtigeAntwort.ToString();
-            correctAnswer = richtigeAntwort;
-        }
+        } while (antwort2Button.GetComponentInChildren<TMP_Text>().text == antwort3Button.GetComponentInChildren<TMP_Text>().text ||
+                 antwort1Button.GetComponentInChildren<TMP_Text>().text == antwort2Button.GetComponentInChildren<TMP_Text>().text ||
+                 antwort1Button.GetComponentInChildren<TMP_Text>().text == antwort3Button.GetComponentInChildren<TMP_Text>().text);
 
         SetQuizVisibility(true);
 
@@ -151,31 +135,11 @@ public class QuizManager : MonoBehaviour
         canSelectAnswer = true;
     }
 
+
     private void EndQuiz()
     {
         SetQuizVisibility(false);
         Time.timeScale = 1;
-
-        // Stop the background music after the quiz ends
-        if (backgroundMusicAudioSource != null)
-        {
-            backgroundMusicAudioSource.Stop();
-        }
-
-        // Access the mathQuizSound from the active Brick and stop it
-        Brick activeBrick = FindObjectOfType<Brick>();
-        if (activeBrick != null)
-        {
-            if (activeBrick.mathQuizSound != null)
-            {
-                // Make sure that mathQuizSound is assigned to an AudioSource component
-                AudioSource audioSource = activeBrick.GetComponent<AudioSource>();
-                if (audioSource != null)
-                {
-                    audioSource.Stop();
-                }
-            }
-        }
     }
 
     private void OnAntwort1Click()
@@ -184,7 +148,6 @@ public class QuizManager : MonoBehaviour
         {
             if (antwort1Button.GetComponentInChildren<TMP_Text>().text == correctAnswer.ToString())
             {
-                PlayCorrectAnswerSound();
                 EndQuiz();
                 ScoreManager scoreManager = FindObjectOfType<ScoreManager>();
                 if (scoreManager != null)
@@ -194,7 +157,6 @@ public class QuizManager : MonoBehaviour
             }
             else
             {
-                PlayWrongAnswerSound();
                 gameController.LooseALife();
                 EndQuiz();
             }
@@ -207,7 +169,6 @@ public class QuizManager : MonoBehaviour
         {
             if (antwort2Button.GetComponentInChildren<TMP_Text>().text == correctAnswer.ToString())
             {
-                PlayCorrectAnswerSound();
                 EndQuiz();
                 ScoreManager scoreManager = FindObjectOfType<ScoreManager>();
                 if (scoreManager != null)
@@ -217,8 +178,8 @@ public class QuizManager : MonoBehaviour
             }
             else
             {
-                PlayWrongAnswerSound();
                 gameController.LooseALife();
+                Debug.Log("Leben abgezogen");
                 EndQuiz();
             }
         }
@@ -230,7 +191,6 @@ public class QuizManager : MonoBehaviour
         {
             if (antwort3Button.GetComponentInChildren<TMP_Text>().text == correctAnswer.ToString())
             {
-                PlayCorrectAnswerSound();
                 EndQuiz();
                 ScoreManager scoreManager = FindObjectOfType<ScoreManager>();
                 if (scoreManager != null)
@@ -240,29 +200,12 @@ public class QuizManager : MonoBehaviour
             }
             else
             {
-                PlayWrongAnswerSound();
                 gameController.LooseALife();
+                Debug.Log("Leben abgezogen");
                 EndQuiz();
             }
         }
     }
-
-    private void PlayCorrectAnswerSound()
-    {
-        if (correctAnswerSound != null)
-        {
-            AudioSource.PlayClipAtPoint(correctAnswerSound, Camera.main.transform.position);
-        }
-    }
-
-    private void PlayWrongAnswerSound()
-    {
-        if (wrongAnswerSound != null)
-        {
-            AudioSource.PlayClipAtPoint(wrongAnswerSound, Camera.main.transform.position);
-        }
-    }
-
 
     void Update()
     {
@@ -291,7 +234,6 @@ public class QuizManager : MonoBehaviour
                     antwort2Button.GetComponent<Image>().color = normalColor;
                     antwort3Button.GetComponent<Image>().color = Color.yellow;
                 }
-                // Add any additional logic here if needed for handling more buttons
             }
 
             if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.Space))
