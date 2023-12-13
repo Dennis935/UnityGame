@@ -13,7 +13,7 @@ public class QuizManager : MonoBehaviour
     private Color normalColor;
     private int correctAnswer;
     private int falscheAntwort;
-    public bool isVisible { get; private set; } = false; // Neue Variable für die Sichtbarkeit
+    public bool isVisible { get; private set; } = false; 
 
     public void Start()
     {
@@ -50,22 +50,22 @@ public class QuizManager : MonoBehaviour
 
         if (mathOperation == MathOperation.Multiplication)
         {
-            zahl1 = Random.Range(1, 11);
-            zahl2 = Random.Range(1, 11);
+            zahl1 = Random.Range(2, 11); 
+            zahl2 = Random.Range(2, 11);
         }
         else if (mathOperation == MathOperation.Division)
         {
             do
             {
-                zahl2 = Random.Range(2, 1001);
-                int maxQuotient = 1000 / zahl2;
-                zahl1 = Random.Range(2, maxQuotient + 1) * zahl2; // Ensure zahl1 is not 1
-            } while (zahl1 == zahl2);  // Repeat until zahl1 is different from zahl2
+                zahl2 = Random.Range(2, 101);  
+                int maxQuotient = 200 / zahl2;
+                zahl1 = Random.Range(2, maxQuotient + 1) * zahl2; 
+            } while (zahl1 == zahl2);  
         }
         else
         {
-            zahl1 = Random.Range(1, 51);
-            zahl2 = Random.Range(1, 51);
+            zahl1 = Random.Range(2, 101); 
+            zahl2 = Random.Range(2, 101);
         }
 
         int richtigeAntwort;
@@ -76,7 +76,6 @@ public class QuizManager : MonoBehaviour
         }
         else if (mathOperation == MathOperation.Subtraction)
         {
-            // Ensure that the result is positive for subtraction
             if (zahl1 >= zahl2)
             {
                 richtigeAntwort = zahl1 - zahl2;
@@ -99,7 +98,6 @@ public class QuizManager : MonoBehaviour
         }
         else
         {
-            // Handle other math operations if needed
             richtigeAntwort = 0;
         }
 
@@ -121,33 +119,23 @@ public class QuizManager : MonoBehaviour
 
         int randomOption = Random.Range(0, 3);
 
-        if (randomOption == 0)
+        // alle 3 Antworten eindeutig sind
+        do
         {
-            antwort1Button.GetComponentInChildren<TMP_Text>().text = richtigeAntwort.ToString();
+            correctAnswer = richtigeAntwort;
+            antwort1Button.GetComponentInChildren<TMP_Text>().text = correctAnswer.ToString();
             antwort2Button.GetComponentInChildren<TMP_Text>().text = falscheAntwort.ToString();
             antwort3Button.GetComponentInChildren<TMP_Text>().text = Mathf.Max(0, falscheAntwort + richtigeAntwort + Random.Range(-5, 6)).ToString();
-            correctAnswer = richtigeAntwort;
-        }
-        else if (randomOption == 1)
-        {
-            antwort1Button.GetComponentInChildren<TMP_Text>().text = falscheAntwort.ToString();
-            antwort2Button.GetComponentInChildren<TMP_Text>().text = richtigeAntwort.ToString();
-            antwort3Button.GetComponentInChildren<TMP_Text>().text = Mathf.Max(0, falscheAntwort + richtigeAntwort + Random.Range(-5, 6)).ToString();
-            correctAnswer = richtigeAntwort;
-        }
-        else
-        {
-            antwort3Button.GetComponentInChildren<TMP_Text>().text = Mathf.Max(0, falscheAntwort + richtigeAntwort + Random.Range(-5, 6)).ToString();
-            antwort2Button.GetComponentInChildren<TMP_Text>().text = falscheAntwort.ToString();
-            antwort3Button.GetComponentInChildren<TMP_Text>().text = richtigeAntwort.ToString();
-            correctAnswer = richtigeAntwort;
-        }
+        } while (antwort2Button.GetComponentInChildren<TMP_Text>().text == antwort3Button.GetComponentInChildren<TMP_Text>().text ||
+                 antwort1Button.GetComponentInChildren<TMP_Text>().text == antwort2Button.GetComponentInChildren<TMP_Text>().text ||
+                 antwort1Button.GetComponentInChildren<TMP_Text>().text == antwort3Button.GetComponentInChildren<TMP_Text>().text);
 
         SetQuizVisibility(true);
 
         Time.timeScale = 0;
         canSelectAnswer = true;
     }
+
 
     private void EndQuiz()
     {
@@ -247,7 +235,6 @@ public class QuizManager : MonoBehaviour
                     antwort2Button.GetComponent<Image>().color = normalColor;
                     antwort3Button.GetComponent<Image>().color = Color.yellow;
                 }
-                // Add any additional logic here if needed for handling more buttons
             }
 
             if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.Space))
