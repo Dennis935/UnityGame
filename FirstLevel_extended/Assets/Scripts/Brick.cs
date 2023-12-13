@@ -38,7 +38,6 @@ public class Brick : MonoBehaviour
         isMathBrick = isMath;
     }
 
-
     // A method that handles the reflection of the ball from a brick when collision is detected
     private void ReflectBall(Collision collision, Action<int> callback)
     {

@@ -5,13 +5,13 @@ using UnityEngine;
 public class Ball : MonoBehaviour
 {
     [SerializeField]
-    private GameController gameController; 
+    private GameController gameController; // Controller for the gameplay
 
     [SerializeField]
-    private AudioSource audioSource; 
+    private AudioSource audioSource; // Audiosource that can play clips when the ball hits objects
 
     [SerializeField]
-    private List<AudioClip> clips; 
+    private List<AudioClip> clips; // List of different soundeffects that are played when the ball hits objects 
     private CameraShake cameraShake;
 
     private void Start()
@@ -32,7 +32,7 @@ public class Ball : MonoBehaviour
         {
             //audioSource.clip = clips[1];
             //audioSource.Play();
-            StartCoroutine(cameraShake.Shake(0.1f, 0.1f)); 
+            StartCoroutine(cameraShake.Shake(0.1f, 0.1f)); // Kamera schütteln
         }
         if (collision.gameObject.CompareTag("Border"))
         {

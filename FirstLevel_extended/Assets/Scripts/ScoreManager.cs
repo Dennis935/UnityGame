@@ -29,6 +29,7 @@ public class ScoreManager : MonoBehaviour
             scoreText.text = "Score: " + score;
         }
 
+        // Save the score to PlayerPrefs
         PlayerPrefs.SetInt("Score", score);
         PlayerPrefs.Save();
     }
